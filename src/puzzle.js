@@ -22,7 +22,7 @@ var Node = fabric.util.createClass({
   },
   toString: function() {
     return '( ID: ' + this.id + ' , EDGES: ' + this.listOfEdges + ' )';
-  }
+  },
   addEdge: function(number) {
 	this.listOfEdges.push(number);
   }
@@ -43,10 +43,10 @@ var Puzzle = fabric.util.createClass(fabric.Rect, {
 	// Maximum current edge id + 1
     this.set('nextid', this.current_state.length || 0); 	// Note: only applies at init()
     this.set('nodes_list', [new Node(0,[]), new Node(1,[]) ]);	// Contains only start and end node
-    for (edge in current_state) {	
-         
-    	this.set('nodes', 
-    }
+    //for (edge in current_state) {	
+    //     
+    //	this.set('nodes', 
+    //}
   },
 
 //  toObject: function() {
