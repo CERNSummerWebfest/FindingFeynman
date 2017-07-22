@@ -34,8 +34,6 @@ var Puzzle = fabric.util.createClass(fabric.Rect, {
   type: 'puzzle',
 
   initialize: function(options) {
-    options || (options = { });
-
     this.callSuper('initialize', options);
     this.set('label', options.label || '');
     this.set('solution_state', options.solution_state || '');	// Should never be accessed
@@ -53,21 +51,21 @@ var Puzzle = fabric.util.createClass(fabric.Rect, {
 //    });
 //  },
 
-  _render: function(ctx) {
-    this.callSuper('_render', ctx);
+//  _render: function(ctx) {
+//    this.callSuper('_render', ctx);
 
-    ctx.font = '20px Helvetica';
-    ctx.fillStyle = '#333';
-    ctx.fillText(this.solution_state[0].toString(), -this.width/2, -this.height/2 + 40);
-	ctx.fillText(this.solution_state[1].toString(), -this.width/2, -this.height/2 + 20);
-	ctx.fillText(this.solution_state[2].toString(), -this.width/2, -this.height/2 + 0);
-  },
+//    ctx.font = '20px Helvetica';
+//    ctx.fillStyle = '#333';
+//    ctx.fillText(this.solution_state[0].toString(), -this.width/2, -this.height/2 + 40);
+//	ctx.fillText(this.solution_state[1].toString(), -this.width/2, -this.height/2 + 20);
+//	ctx.fillText(this.solution_state[2].toString(), -this.width/2, -this.height/2 + 0);
+//  },
 
 	// Shit I still have to write (specifically checkers) <3
 
   checkSolution: function() {
 
-
+	
 
   },
 
@@ -89,11 +87,11 @@ var Puzzle = fabric.util.createClass(fabric.Rect, {
 
   addEdge: function(pid, start, end) {
   	this.current_state.push(new Edge(this.nextid,pid,start,end));
-  	this.nextid += 1;			//90% sure this will work, will test later
+  	this.nextid += 1;			
   },
 
   removeEdge: function(id) {
-	this.current_state.splice(id, 1);	//80% sure this will work, will test later
+	this.current_state.splice(id, 1);
 	//nextid is not decremented, because we didn't bother to shift the id for each edge because lazi
   },
 
