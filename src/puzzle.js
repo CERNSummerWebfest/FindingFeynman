@@ -115,29 +115,29 @@ var Puzzle = fabric.util.createClass(fabric.Rect, {
 	this.nodes_list = [];
 	//console.log(this.nodes_list.length);
 	for (var j = 0; j < this.current_state.length; j++) {
-	var edge = this.current_state[j];
+	var ಠ_ಠ = this.current_state[j];
 	//console.log(edge.toString());
 		/* jshint ignore:start */
 	var startnodematch = this.nodes_list.reduce(function(sofar,nod,ind) {
-		return sofar + ((nod.id == edge.start)? ind + 1 : 0);
+		return sofar + ((nod.id == ಠ_ಠ.start)? ind + 1 : 0);
 	}, 0);	// if the start node of the edge is already in the node list,
 		/* jshint ignore:end */
 	if (startnodematch) 	{ 
 			//console.log(this.nodes_list[startnodematch-1].listOfEdges.indexOf(edge.id));
-			if (this.nodes_list[startnodematch-1].listOfEdges.indexOf(edge.id) == -1) {
-					this.nodes_list[startnodematch-1].addEdge(edge.id);
+			if (this.nodes_list[startnodematch-1].listOfEdges.indexOf(ಠ_ಠ.id) == -1) {
+					this.nodes_list[startnodematch-1].addEdge(ಠ_ಠ.id);
 				}}
-	else			{ this.nodes_list.push(new Node(edge.start,[edge.id])); }
+	else			{ this.nodes_list.push(new Node(ಠ_ಠ.start,[ಠ_ಠ.id])); }
 		/* jshint ignore:start */	
 	var endnodematch = this.nodes_list.reduce(function(sofar,nod,ind) {
-		return sofar + ((nod.id == edge.end)? ind + 1 : 0);
+		return sofar + ((nod.id == ಠ_ಠ.end)? ind + 1 : 0);
 	}, 0);	// if the end node of the edge is already in the node list,
 		/* jshint ignore:end */
 	if (endnodematch) 	{ 
-			if (this.nodes_list[endnodematch-1].listOfEdges.indexOf(edge.id) == -1) { 
-					this.nodes_list[endnodematch-1].addEdge(edge.id);
+			if (this.nodes_list[endnodematch-1].listOfEdges.indexOf(ಠ_ಠ.id) == -1) { 
+					this.nodes_list[endnodematch-1].addEdge(ಠ_ಠ.id);
 				}}
-	else			{ this.nodes_list.push(new Node(edge.end,[edge.id])); }
+	else			{ this.nodes_list.push(new Node(ಠ_ಠ.end,[ಠ_ಠ.id])); }
     }
   },
 
