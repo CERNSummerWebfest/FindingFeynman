@@ -5,32 +5,59 @@ var canvas = new fabric.Canvas('canvas');
 canvas.setHeight(window.innerHeight);
 canvas.setWidth(window.innerWidth);
 
-var edge  = {
-	start: 	1,
-	end:	2,
-	id:	3,
-	PID:	4,
-	reset_nodes: function() {
-		//console.log("before");
-		//console.log(this.start);
-		this.start = 0;
-		//console.log("after");
-		//console.log(this.start);
-		this.end = 1;
-	}
-};
+var Edge = fabric.util.createClass({
+  initialize: function(id, pid, start, end) {
+    this.start = start || 0;
+    this.end = end || 0;
+    this.id = id || 0;
+    this.pid = pid || 0;
+  },
+  toString: function() {
+    return '( ID: ' + this.id + ' , PID: ' + this.pid + ' , START: ' + this.start + ' , END: ' + this.end + ' )';
+  }
+});
+
+var edge = new Edge(1,2,3,4);
+console.log(edge);
+console.log(edge.toString());
+
+//Note: need to change inheritance to "page object" once such a thing exists
+var Puzzle = fabric.util.createClass(fabric.Rect, {
+
+  type: 'puzzle',
+
+  initialize: function(options) {
+    options || (options = { });
+
+    this.callSuper('initialize', options);
+    this.set('label', options.label || '');
+  },
+
+  toObject: function() {
+    return fabric.util.object.extend(this.callSuper('toObject'), {
+      label: this.get('label')
+    });
+  },
+
+  _render: function(ctx) {
+    this.callSuper('_render', ctx);
+
+    ctx.font = '20px Helvetica';
+    ctx.fillStyle = '#333';
+    ctx.fillText(this.label, -this.width/2, -this.height/2 + 20);
+  }
+});
 
 
-var text = new fabric.Text(""+edge.start, { left: 200, top: 200 });
-edge.reset_nodes();
-var text2 = new fabric.Text(""+edge.start, { left: 300, top: 200 });
-
-canvas.add(text);
-canvas.add(text2);
-canvas.add(new fabric.Circle({ radius: 30, fill: '#f55', top: 100, left: 100 }));
-canvas.item(0).hasControls = canvas.item(0).hasBorders = false;
-
-canvas.add(new fabric.Rect({ top: 200, left: 200 , fill: 'red', width: 20, width: 20}));
+var labeledRect = new Puzzle({
+  width: 100,
+  height: 50,
+  left: 100,
+  top: 100,
+  label: 'test',
+  fill: '#faa' 
+});
+canvas.add(labeledRect);
 
 canvas.on({
   'mouse:down': function(e) {
