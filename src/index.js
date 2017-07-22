@@ -39,26 +39,37 @@ var puzzle = new Puzzle({
   top: 200,
   label: 'test',
   fill: '#faa',
-  solution_state: [	new Edge(1,1,1,1),
-			new Edge(2,2,2,2),
-			new Edge(3,3,3,3),
-			new Edge(4,4,4,4)
+  solution_state: [	new Edge(0,11,0,2),
+			new Edge(1,30,2,3),
+			new Edge(2,-11,3,0),
+			new Edge(3,11,2,1),
+			new Edge(4,-11,1,3)
 			],
 		
-  current_state: [	new Edge(1,1,1,1),
-			new Edge(2,2,2,2),
-			new Edge(3,3,3,3),
-			new Edge(4,4,4,4)
+  current_state: [	new Edge(0,11,0,2),
+			new Edge(1,30,2,3),
+			new Edge(2,-11,3,0),
+			new Edge(3,11,2,1),
+			new Edge(4,-11,1,3)
 			]
 });
+
 canvas.add(puzzle);
 puzzle.printState();
-puzzle.addEdge(5,3,4);
+puzzle.genNodesList();
+puzzle.printNodesList();
+puzzle.addEdge(22,3,1);
 puzzle.printState();
+puzzle.genNodesList();
+puzzle.printNodesList();
 puzzle.removeEdge(1);
 puzzle.printState();
+puzzle.genNodesList();
+puzzle.printNodesList();
 puzzle.removeNode(3);
 puzzle.printState();
+puzzle.genNodesList();
+puzzle.printNodesList();
 
 canvas.on({
   'mouse:down': function(e) {

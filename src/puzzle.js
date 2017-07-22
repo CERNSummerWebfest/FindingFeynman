@@ -21,7 +21,7 @@ var Node = fabric.util.createClass({
     this.listOfEdges = listOfEdges || [];
   },
   toString: function() {
-    return '( ID: ' + this.id + ' , EDGES: ' + this.listOfEdges + ' )';
+    return '( ID: ' + this.id + ' , EDGES: ' + this.listOfEdges.toString() + ' )';
   },
   addEdge: function(number) {
 	this.listOfEdges.push(number);
@@ -42,11 +42,7 @@ var Puzzle = fabric.util.createClass(fabric.Rect, {
     this.set('current_state', options.solution_state || '');
 	// Maximum current edge id + 1
     this.set('nextid', this.current_state.length || 0); 	// Note: only applies at init()
-    this.set('nodes_list', [new Node(0,[]), new Node(1,[]) ]);	// Contains only start and end node
-    //for (edge in current_state) {	
-    //     
-    //	this.set('nodes', 
-    //}
+    this.set('nodes_list', []);	// Contains only start and end node, must be manually 'gen'd'
   },
 
 //  toObject: function() {
@@ -85,10 +81,8 @@ var Puzzle = fabric.util.createClass(fabric.Rect, {
 	return (this.current_state.length == number);
   },
   
-  checkNumberOfNodes: function(checkpid, number) {
-	return (number == this.current_state.reduce(function(sum, edge) {
-		return sum + ( edge.pid == checkpid );	
-	}, 0));
+  checkNumberOfNodes: function(number) {		// MUST call genNodesList first!!!
+	return (this.nodes_list.length == number);
   },
 
 	// Functions for editing the diagram
@@ -114,6 +108,40 @@ var Puzzle = fabric.util.createClass(fabric.Rect, {
 	console.log("Current State:");
 	this.current_state.map(function(edge) {
 		console.log(edge.toString());
+		return;
+	});
+  },
+
+  genNodesList: function() {
+	this.nodes_list = [];
+	//console.log(this.nodes_list.length);
+	for (var j = 0; j < this.current_state.length; j++) {
+	var edge = this.current_state[j];
+	//console.log(edge.toString());
+	var startnodematch = this.nodes_list.reduce(function(sofar,node,index) {
+		return sofar + ((node.id == edge.start)? index + 1 : 0);
+	}, 0)	// if the start node of the edge is already in the node list,
+	if (startnodematch) 	{ 
+			//console.log(this.nodes_list[startnodematch-1].listOfEdges.indexOf(edge.id));
+			if (this.nodes_list[startnodematch-1].listOfEdges.indexOf(edge.id) == -1) {
+					this.nodes_list[startnodematch-1].addEdge(edge.id);
+				}}
+	else			{ this.nodes_list.push(new Node(edge.start,[edge.id])); }
+	var endnodematch = this.nodes_list.reduce(function(sofar,node,index) {
+		return sofar + ((node.id == edge.end)? index + 1 : 0);
+	}, 0)	// if the end node of the edge is already in the node list,
+	if (endnodematch) 	{ 
+			if (this.nodes_list[endnodematch-1].listOfEdges.indexOf(edge.id) == -1) { 
+					this.nodes_list[endnodematch-1].addEdge(edge.id);
+				}}
+	else			{ this.nodes_list.push(new Node(edge.end,[edge.id])); }
+    }
+  },
+
+  printNodesList: function() {
+	console.log("Nodes:");
+	this.nodes_list.map(function(node) {
+		console.log(node.toString());
 		return;
 	});
   }
