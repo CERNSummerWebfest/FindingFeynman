@@ -31,11 +31,17 @@ var Puzzle = fabric.util.createClass(fabric.Rect, {
 
     this.callSuper('initialize', options);
     this.set('label', options.label || '');
+    this.set('solution_state', options.solution_state || '');	// Should never be accessed
+    this.set('current_state', options.solution_state || '');
+	// Maximum current edge id + 1
+    this.set('nextid', this.current_state.length || 0); 	// Note: only applies at init()
   },
 
   toObject: function() {
     return fabric.util.object.extend(this.callSuper('toObject'), {
-      label: this.get('label')
+      	label: this.get('label'),
+	solution_state: this.get('solution_state'),
+	current_state: this.get('current_state')
     });
   },
 
@@ -44,20 +50,64 @@ var Puzzle = fabric.util.createClass(fabric.Rect, {
 
     ctx.font = '20px Helvetica';
     ctx.fillStyle = '#333';
-    ctx.fillText(this.label, -this.width/2, -this.height/2 + 20);
+    ctx.fillText(this.solution_state[0].toString(), -this.width/2, -this.height/2 + 40);
+	ctx.fillText(this.solution_state[1].toString(), -this.width/2, -this.height/2 + 20);
+	ctx.fillText(this.solution_state[2].toString(), -this.width/2, -this.height/2 + 0);
+  },
+
+	// Shit I still have to write (specifically checkers) <3
+
+  checkSolution: function() {
+
+
+
+  },
+
+  checkNumberOfParticlesType: function(checkpid, number) {
+	return (number == this.current_state.reduce(function(sum, edge) {
+		return sum + ( edge.pid == checkpid ? 1 : 0 );	
+	}, 0);
+  },
+
+	// Functions for editing the diagram
+
+  addEdge: function(pid, start, end) {
+  	this.current_state.push(new Edge(this.nextid,pid,start,end));
+  	this.nextid += 1;			//90% sure this will work, will test later
+  },
+
+  removeEdge: function(id) {
+	this.current_state.splice(id, 1);	//80% sure this will work, will test later
+	//nextid is not decremented, because we didn't bother to shift the id for each edge because lazi
+  },
+
+  removeNode: function(vid) {
+	this.current_state.filter();
   }
+
 });
 
 
-var labeledRect = new Puzzle({
-  width: 100,
+var puzzle = new Puzzle({
+  width: 300,
   height: 50,
   left: 100,
   top: 100,
   label: 'test',
-  fill: '#faa' 
+  fill: '#faa',
+  solution_state: [	new Edge(1,1,1,1),
+			new Edge(2,2,2,2),
+			new Edge(3,3,3,3),
+			new Edge(4,4,4,4)
+			],
+		
+  current_state: [	new Edge(1,1,1,1),
+			new Edge(2,2,2,2),
+			new Edge(3,3,3,3),
+			new Edge(4,4,4,4)
+			]
 });
-canvas.add(labeledRect);
+canvas.add(puzzle);
 
 canvas.on({
   'mouse:down': function(e) {
