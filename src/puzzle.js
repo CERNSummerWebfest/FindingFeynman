@@ -65,8 +65,9 @@ var Puzzle = fabric.util.createClass(fabric.Rect, {
 
   checkSolution: function() {
 
-	
-
+	return this.current_state.reduce( function(oldcheck,edge) {
+		
+	}, 1);
   },
 
   checkNumberOfParticlesType: function(checkpid, number) {
