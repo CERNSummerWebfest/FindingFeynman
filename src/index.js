@@ -1,7 +1,10 @@
 
 //make a canvas object bound to the html canvas tag with id = "canvas"
 var canvas = new fabric.Canvas('canvas');
+<<<<<<< HEAD
 //canvas.setDimensions({width:800, height:800});
+canvas.setHeight(window.innerHeight);
+canvas.setWidth(window.innerWidth);
 
 var text = new fabric.Text('hello world', { left: 100, top: 100 });
 var edge  = {
@@ -14,6 +17,8 @@ var edge  = {
 canvas.add(text);
 canvas.add(new fabric.Circle({ radius: 30, fill: '#f55', top: 100, left: 100 }));
 canvas.item(0).hasControls = canvas.item(0).hasBorders = false;
+
+canvas.add(new fabric.Rect({ top: 200, left: 200 , fill: 'red', width: 20, width: 20}));
 
 canvas.on({
   'mouse:down': function(e) {
