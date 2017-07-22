@@ -5,23 +5,11 @@ var canvas = new fabric.Canvas('canvas');
 canvas.setHeight(window.innerHeight);
 canvas.setWidth(window.innerWidth);
 
-var group = [];
-fabric.loadSVGFromURL("assets/SM_Gray.svgz",function(objects,options)
-{
-  var loadedObjects = new fabric.Group(group);
-  loadedObjects.set({
-    left: 0,
-    top: 0,
-    width:100,
-    height:100
-  });
-  canvas.add(loadedObjects);
-  canvas.renderAll();
-},
-function(item, object) {
-  object.set('id', item.getAttribute('id'));
-  group.push(object);
-});
+var canvas = new fabric.Canvas('canvas');
+fabric.loadSVGFromURL('assets/SM_Gray.svgz', function(objects, options) {
+  var obj = fabric.util.groupSVGElements(objects, options);
+  canvas.add(obj).renderAll();
+}
 
 var text = new fabric.Text('hello world', { left: 100, top: 100 });
 var edge  = {
