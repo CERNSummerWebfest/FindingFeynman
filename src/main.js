@@ -1,6 +1,15 @@
 //make a canvas object bound to the html canvas tag with id = "canvas"
 var canvas = new fabric.Canvas('canvas');
 
+//this might disable the annoying touch scrolling on a phone, dunno
+//canvas.allowTouchScrolling = false;
+
+//make a background image?
+//canvas.backgroundImage = ...
+
+//make it better for ios?
+//canvas.enableRetinaScaling = true;
+
 //canvas.setDimensions({width:800, height:800});
 canvas.setHeight(window.innerHeight);
 canvas.setWidth(window.innerWidth);
