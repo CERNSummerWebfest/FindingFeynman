@@ -5,15 +5,28 @@ var canvas = new fabric.Canvas('canvas');
 canvas.setHeight(window.innerHeight);
 canvas.setWidth(window.innerWidth);
 
-var text = new fabric.Text('hello world', { left: 100, top: 100 });
 var edge  = {
 	start: 	1,
 	end:	2,
 	id:	3,
-	PID:	4
+	PID:	4,
+	reset_nodes: function() {
+		//console.log("before");
+		//console.log(this.start);
+		this.start = 0;
+		//console.log("after");
+		//console.log(this.start);
+		this.end = 1;
+	}
 };
 
+
+var text = new fabric.Text(""+edge.start, { left: 200, top: 200 });
+edge.reset_nodes();
+var text2 = new fabric.Text(""+edge.start, { left: 300, top: 200 });
+
 canvas.add(text);
+canvas.add(text2);
 canvas.add(new fabric.Circle({ radius: 30, fill: '#f55', top: 100, left: 100 }));
 canvas.item(0).hasControls = canvas.item(0).hasBorders = false;
 
