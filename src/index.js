@@ -7,7 +7,7 @@ canvas.setWidth(window.innerWidth);
 canvas.add(new fabric.Circle({ radius: 30, fill: '#f55', top: 100, left: 100 }));
 canvas.item(0).hasControls = canvas.item(0).hasBorders = false;
 
-canvas.add(new fabric.Circle({ radius: 30, fill: '#f55', top: 100, left: 100 }));
+canvas.add(new fabric.Rect({ top: 200, left: 200 , fill: 'red', width: 20, width: 20}));
 
 canvas.on({
   'mouse:down': function(e) {
