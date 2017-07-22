@@ -52,6 +52,13 @@ var puzzle = new Puzzle({
 			]
 });
 canvas.add(puzzle);
+puzzle.printState();
+puzzle.addEdge(5,3,4);
+puzzle.printState();
+puzzle.removeEdge(1);
+puzzle.printState();
+puzzle.removeNode(3);
+puzzle.printState();
 
 canvas.on({
   'mouse:down': function(e) {
