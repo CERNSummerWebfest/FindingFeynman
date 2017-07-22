@@ -6,6 +6,9 @@ module.exports = function(grunt) {
     
     uglify: {
       options: {
+        sourceMap : true,
+        sourceMapIncludeSources : true,
+        sourceMapIn : 'dist/<%= pkg.name %>.js.map',
         // the banner is inserted at the top of the output
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
       },
@@ -19,7 +22,8 @@ module.exports = function(grunt) {
     concat: {
       options: {
         // define a string to put between each file in the concatenated output
-        separator: ';'
+        separator: ';',
+        sourceMap : true,
       },
       dist: {
         // the files to concatenate
@@ -54,6 +58,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-concat-sourcemap');
 
   // the default task can be run just by typing "grunt" on the command line
   grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
