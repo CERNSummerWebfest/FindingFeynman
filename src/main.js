@@ -15,8 +15,13 @@ function loadAssets(global, function_to_run_after_assets_are_loaded) {
     //pop an asset of the list, removing it
     var asset = global.assets_to_load.pop();
 
+    if(asset === undefined) {
+      console.log("got to the base case, calling afterAssetsLoaded");
+      //now all the assets are loaded we can call the main function
+      function_to_run_after_assets_are_loaded(global);
+    }
     //if there are still assets left to load
-    if(asset) {
+    else {
       fabric.loadSVGFromURL("assets/" + asset.url, function(objs, opt) {
         console.log("loaded asset " + asset.name);
         var object = fabric.util.groupSVGElements(objs, opt);
@@ -26,12 +31,9 @@ function loadAssets(global, function_to_run_after_assets_are_loaded) {
 
         //this is the recursive part
         recurse_on_assets(global, assets_to_load);
-      });}
-    else {
-    //now all the assets are loaded we can call the main function
-    function_to_run_after_assets_are_loaded(global);
-    }
+      });}  
   }
+  recurse_on_assets(global, global.assets_to_load);
 }
 
 //this just makes the global variables and then calls loadAssets
