@@ -2,7 +2,7 @@ echo "" > findingfeynman.js
 
 for f in `find ./src/ -type f -not -name "main.js"`
 do
-	printf "\n// starting file: " $f "\n" >> findingfeynman.js
+	printf "\n// starting file: "$f"\n" >> findingfeynman.js
     cat $f >> findingfeynman.js
 done
 
