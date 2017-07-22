@@ -1,103 +1,63 @@
-function main()
-{
-  //make a canvas object bound to the html canvas tag with id = "canvas"
-  var canvas = new fabric.Canvas('canvas');
-  //canvas.setDimensions({width:800, height:800});
-  canvas.setHeight(window.innerHeight);
-  canvas.setWidth(window.innerWidth);
-
-  var assets = { 'FFlogo': {}, 'startButton': {} };
-
-  var numAssetsLoaded = 0;
-
-  fabric.loadSVGFromURL('assets/FindingFeynmanLogo.svg', function(objects, options) {
-    var obj = fabric.util.groupSVGElements(objects, options);
-    obj.scale(2)
-    obj.set({
-      top: -75,
-      left: window.innerWidth*0.05
-    });
-    obj.set('selectable', false)
-    //assets.FFlogo = obj;
-    numAssetsLoaded += 1;
-    canvas.add(obj).renderAll();
-  });
-
-  fabric.loadSVGFromURL('assets/StartButton.svg', function(objects, options) {
-    var obj = fabric.util.groupSVGElements(objects, options);
-    obj.scale(0.5)
-    obj.set({
-      top: 500,
-      left: window.innerWidth*0.45
-    });
-    obj.set('selectable', false)
-    //assets.startButton = obj;
-    numAssetsLoaded += 1;
-    canvas.add(obj).renderAll();
-  });  
-
-  canvas.selection = false; // disable group selection
-
-  while (numAssetsLoaded < 2) {
-    console.log["still num assets loaded less than 2"]
-  }
-
-  fabric.loadSVGFromURL('assets/StartButton.svg', function(objects, options) {
-    var obj = fabric.util.groupSVGElements(objects, options);
-    obj.scale(0.5)
-    obj.set({
-      top: 500,
-      left: window.innerWidth*0.45
-    });
-    obj.set('selectable', false)
-    //assets.startButton = obj;
-    numAssetsLoaded += 1;
-    canvas.add(obj).renderAll();
-  });  
-
-  // var startPage = new StartPage({ }, canvas, 'startPage', [ assets.FFlogo, assets.startButton ]);
-
-  // startPage.showScreen();
-
-
-  // var text = new fabric.Text('hello world', { left: 100, top: 100 });
-  // var edge  = {
-  //   start:  1,
-  //   end:  2,
-  //   id: 3,
-  //   PID:  4
-  // };
-
-  // console.log(canvas)
-
-  // canvas.add(text);
-  // canvas.add(new fabric.Circle({ radius: 30, fill: '#f55', top: 100, left: 100 }));
-  // canvas.item(0).hasControls = canvas.item(0).hasBorders = false;
-
-  // canvas.add(new fabric.Rect({ top: 200, left: 200 , fill: 'red', width: 20, width: 20}));
-
-  canvas.on({
-    'mouse:down': function(e) {
-      if (e.target) {
-        e.target.opacity = 0.5;
-        canvas.renderAll();
-      }
-    },
-    'mouse:up': function(e) {
-      if (e.target) {
-        e.target.opacity = 1;
-        canvas.renderAll();
-      }
-    },
-    'object:moved': function(e) {
-      e.target.opacity = 0.5;
-    },
-    'object:modified': function(e) {
-      e.target.opacity = 1;
-    }
-  });
+function afterAssetsLoaded(global) {
+  console.log(global.assets);
 }
 
+function loadAssets(global, function_to_run_after_assets_are_loaded) {
+
+  //info on the assets that we're gonna load
+  global.assets_to_load = [
+    {url: "FindingFeynmanLogo.svg", name: "FFlogo"},
+    {url: "StartButton.svg", name: "startButton"}
+    ];
+
+  global.assets = {};
+  function recurse_on_assets(global, assets_to_load) {
+    //pop an asset of the list, removing it
+    var asset = global.assets_to_load.pop();
+
+    //if there are still assets left to load
+    if(asset) {
+      fabric.loadSVGFromURL("assets/" + asset.url, function(objs, opt) {
+        console.log("loaded asset " + asset.name);
+        var object = fabric.util.groupSVGElements(objs, opt);
+        
+        //make a new field on assets for this asset
+        global.assets[asset.name] = object;
+
+        //this is the recursive part
+        recurse_on_assets(global, assets_to_load);
+      });}
+    else {
+    //now all the assets are loaded we can call the main function
+    function_to_run_after_assets_are_loaded(global);
+    }
+  }
+}
+
+//this just makes the global variables and then calls loadAssets
+function main() {
+  //ALL GLOBAL STATE SHOULD BE HERE!
+  //make a canvas object bound to the html canvas tag with id = "canvas"
+  console.log("Entered main");
+  var global = {};
+  global.canvas = new fabric.Canvas('canvas');
+  global.assets = {};
+  global.pages = {};
+
+  //this might disable the annoying touch scrolling on a phone, dunno
+  //canvas.allowTouchScrolling = false;
+
+  //make a background image?
+  //canvas.backgroundImage = ...
+
+  //make it better for ios?
+  //canvas.enableRetinaScaling = true;
+
+  //this loads assets and then calls the arguments
+  loadAssets(global, afterAssetsLoaded);
+}
+
+//this is the entry point to all the code, ever.
 window.onload=main;
 
 
