@@ -18,8 +18,9 @@ function main()
       left: window.innerWidth*0.05
     });
     obj.set('selectable', false)
-    assets.FFlogo = obj;
+    //assets.FFlogo = obj;
     numAssetsLoaded += 1;
+    canvas.add(obj).renderAll();
   });
 
   fabric.loadSVGFromURL('assets/StartButton.svg', function(objects, options) {
@@ -30,18 +31,33 @@ function main()
       left: window.innerWidth*0.45
     });
     obj.set('selectable', false)
-    assets.startButton = obj;
+    //assets.startButton = obj;
     numAssetsLoaded += 1;
+    canvas.add(obj).renderAll();
   });  
 
   canvas.selection = false; // disable group selection
 
   while (numAssetsLoaded < 2) {
-
+    console.log["still num assets loaded less than 2"]
   }
-  var startPage = new StartPage({ }, canvas, 'startPage', [ assets.FFlogo, assets.startButton ]);
 
-  startPage.showScreen();
+  fabric.loadSVGFromURL('assets/StartButton.svg', function(objects, options) {
+    var obj = fabric.util.groupSVGElements(objects, options);
+    obj.scale(0.5)
+    obj.set({
+      top: 500,
+      left: window.innerWidth*0.45
+    });
+    obj.set('selectable', false)
+    //assets.startButton = obj;
+    numAssetsLoaded += 1;
+    canvas.add(obj).renderAll();
+  });  
+
+  // var startPage = new StartPage({ }, canvas, 'startPage', [ assets.FFlogo, assets.startButton ]);
+
+  // startPage.showScreen();
 
 
   // var text = new fabric.Text('hello world', { left: 100, top: 100 });
