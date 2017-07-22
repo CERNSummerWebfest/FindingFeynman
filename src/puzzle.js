@@ -1,10 +1,4 @@
 
-//make a canvas object bound to the html canvas tag with id = "canvas"
-var canvas = new fabric.Canvas('canvas');
-//canvas.setDimensions({width:800, height:800});
-canvas.setHeight(window.innerHeight);
-canvas.setWidth(window.innerWidth);
-
 var Edge = fabric.util.createClass({
   initialize: function(id, pid, start, end) {
     this.start = start || 0;
@@ -66,7 +60,7 @@ var Puzzle = fabric.util.createClass(fabric.Rect, {
   checkNumberOfParticlesType: function(checkpid, number) {
 	return (number == this.current_state.reduce(function(sum, edge) {
 		return sum + ( edge.pid == checkpid ? 1 : 0 );	
-	}, 0);
+	}, 0));
   },
 
 	// Functions for editing the diagram
@@ -85,48 +79,5 @@ var Puzzle = fabric.util.createClass(fabric.Rect, {
 	this.current_state.filter();
   }
 
-});
-
-
-var puzzle = new Puzzle({
-  width: 300,
-  height: 50,
-  left: 100,
-  top: 100,
-  label: 'test',
-  fill: '#faa',
-  solution_state: [	new Edge(1,1,1,1),
-			new Edge(2,2,2,2),
-			new Edge(3,3,3,3),
-			new Edge(4,4,4,4)
-			],
-		
-  current_state: [	new Edge(1,1,1,1),
-			new Edge(2,2,2,2),
-			new Edge(3,3,3,3),
-			new Edge(4,4,4,4)
-			]
-});
-canvas.add(puzzle);
-
-canvas.on({
-  'mouse:down': function(e) {
-    if (e.target) {
-      e.target.opacity = 0.5;
-      canvas.renderAll();
-    }
-  },
-  'mouse:up': function(e) {
-    if (e.target) {
-      e.target.opacity = 1;
-      canvas.renderAll();
-    }
-  },
-  'object:moved': function(e) {
-    e.target.opacity = 0.5;
-  },
-  'object:modified': function(e) {
-    e.target.opacity = 1;
-  }
 });
 
