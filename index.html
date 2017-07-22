@@ -6,21 +6,11 @@
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 
 <script src="assets/fabric.min.js"></script>
-
-<!-- capture touch movement events and kill them -->
-<script type="text/javascript">
-   function blockMove() {
-      event.preventDefault() ;
-}
-</script>
-
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<script type="text/javascript" src="dist/findingfeynman.min.js"></script>
 
 </head>
-<body ontouchmove="blockMove()">
+<body >
 	<canvas id="canvas" resize></canvas>
 </body>
-
-<script type="text/javascript" src="findingfeynman.js"></script>
-
 </html>

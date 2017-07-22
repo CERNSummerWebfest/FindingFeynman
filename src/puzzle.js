@@ -11,18 +11,12 @@ var Edge = fabric.util.createClass({
   }
 });
 
-var edge = new Edge(1,2,3,4);
-console.log(edge);
-console.log(edge.toString());
-
 //Note: need to change inheritance to "page object" once such a thing exists
 var Puzzle = fabric.util.createClass(fabric.Rect, {
 
   type: 'puzzle',
 
   initialize: function(options) {
-    options || (options = { });
-
     this.callSuper('initialize', options);
     this.set('label', options.label || '');
     this.set('solution_state', options.solution_state || '');	// Should never be accessed
