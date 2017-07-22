@@ -1,7 +1,7 @@
 
 //make a canvas object bound to the html canvas tag with id = "canvas"
 var canvas = new fabric.Canvas('canvas');
-<<<<<<< HEAD
+
 //canvas.setDimensions({width:800, height:800});
 canvas.setHeight(window.innerHeight);
 canvas.setWidth(window.innerWidth);
