@@ -11,11 +11,11 @@ var edge  = {
 	id:	3,
 	PID:	4,
 	reset_nodes: function() {
-		console.log("before");
-		console.log(this.start);
+		//console.log("before");
+		//console.log(this.start);
 		this.start = 0;
-		console.log("after");
-		console.log(this.start);
+		//console.log("after");
+		//console.log(this.start);
 		this.end = 1;
 	}
 };
