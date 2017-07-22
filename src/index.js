@@ -5,7 +5,6 @@ var canvas = new fabric.Canvas('canvas');
 canvas.setHeight(window.innerHeight);
 canvas.setWidth(window.innerWidth);
 
-var canvas = new fabric.Canvas('canvas');
 fabric.loadSVGFromURL('assets/SM_Gray.svgz', function(objects, options) {
   var obj = fabric.util.groupSVGElements(objects, options);
   canvas.add(obj).renderAll();
