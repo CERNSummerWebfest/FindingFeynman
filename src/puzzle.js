@@ -11,6 +11,23 @@ var Edge = fabric.util.createClass({
   }
 });
 
+//var edge = new Edge(1,2,3,4);
+//console.log(edge);
+//console.log(edge.toString());
+
+var Node = fabric.util.createClass({
+  initialize: function(id, listOfEdges) {
+    this.id = id || 0;
+    this.listOfEdges = listOfEdges || [];
+  },
+  toString: function() {
+    return '( ID: ' + this.id + ' , EDGES: ' + this.listOfEdges + ' )';
+  },
+  addEdge: function(number) {
+	this.listOfEdges.push(number);
+  }
+});
+
 //Note: need to change inheritance to "page object" once such a thing exists
 var Puzzle = fabric.util.createClass(fabric.Rect, {
 
@@ -23,15 +40,20 @@ var Puzzle = fabric.util.createClass(fabric.Rect, {
     this.set('current_state', options.solution_state || '');
 	// Maximum current edge id + 1
     this.set('nextid', this.current_state.length || 0); 	// Note: only applies at init()
+    this.set('nodes_list', [new Node(0,[]), new Node(1,[]) ]);	// Contains only start and end node
+    //for (edge in current_state) {	
+    //     
+    //	this.set('nodes', 
+    //}
   },
 
-  toObject: function() {
-    return fabric.util.object.extend(this.callSuper('toObject'), {
-      	label: this.get('label'),
-	solution_state: this.get('solution_state'),
-	current_state: this.get('current_state')
-    });
-  },
+//  toObject: function() {
+//    return fabric.util.object.extend(this.callSuper('toObject'), {
+//     	label: this.get('label'),
+//	solution_state: this.get('solution_state'),
+//	current_state: this.get('current_state')
+//    });
+//  },
 
   _render: function(ctx) {
     this.callSuper('_render', ctx);
@@ -53,7 +75,17 @@ var Puzzle = fabric.util.createClass(fabric.Rect, {
 
   checkNumberOfParticlesType: function(checkpid, number) {
 	return (number == this.current_state.reduce(function(sum, edge) {
-		return sum + ( edge.pid == checkpid ? 1 : 0 );	
+		return sum + ( edge.pid == checkpid );	
+	}, 0));
+  },
+
+  checkNumberOfEdges: function(number) {
+	return (this.current_state.length == number);
+  },
+  
+  checkNumberOfNodes: function(checkpid, number) {
+	return (number == this.current_state.reduce(function(sum, edge) {
+		return sum + ( edge.pid == checkpid );	
 	}, 0));
   },
 
@@ -69,8 +101,19 @@ var Puzzle = fabric.util.createClass(fabric.Rect, {
 	//nextid is not decremented, because we didn't bother to shift the id for each edge because lazi
   },
 
-  removeNode: function(vid) {
-	this.current_state.filter();
+  removeNode: function(nodeid) {
+	this.current_state = this.current_state.filter(function(edge) {
+		return (edge.start != nodeid); 
+		//neither end of edge is at node
+	});
+  },
+
+  printState: function() {
+	console.log("Current State:");
+	this.current_state.map(function(edge) {
+		console.log(edge.toString());
+		return;
+	});
   }
 
 });
