@@ -32,7 +32,7 @@ top: window.innerHeight-100, left: (window.innerWidth/2)-50}
 egroup.set({ lockMovementX: true, 
                   lockMovementY: true,
                   hasBorders:false, 
-                  hasControls:false })
+                  hasControls:false });
 
 var vebox = new fabric.Rect({ originX: 'center', originY: 'center', fill: 'black', width: 40, height: 40});
 vebox.set('fill', 'white');
@@ -56,7 +56,7 @@ top: window.innerHeight-100, left: (window.innerWidth/2)-50}
 vegroup.set({ lockMovementX: true, 
                   lockMovementY: true,
                   hasBorders:false, 
-                  hasControls:false })
+                  hasControls:false });
 
 var ubox = new fabric.Rect({ originX: 'center', originY: 'center', fill: 'black', width: 40, height: 40});
 ubox.set('fill', 'white');
@@ -103,7 +103,7 @@ top: window.innerHeight-100, left: (window.innerWidth/2)-50}
 dgroup.set({ lockMovementX: true, 
                   lockMovementY: true,
                   hasBorders:false, 
-                  hasControls:false })
+                  hasControls:false });
 
 var fermionbox = new fabric.Rect({ top: window.innerHeight-100, left: (window.innerWidth/2)-50, fill: 'black', width: 40, height: 40});
 fermionbox.set('fill', 'white');
@@ -136,7 +136,7 @@ top: window.innerHeight-100, left: (window.innerWidth/2)}
 gammagroup.set({ lockMovementX: true, 
                   lockMovementY: true,
                   hasBorders:false, 
-                  hasControls:false })
+                  hasControls:false });
 
 
 var interactionbox = new fabric.Rect({ top: window.innerHeight-100, left:(window.innerWidth/2) , fill: 'black', width: 40, height: 40});
@@ -185,24 +185,23 @@ smbox.set({ lockMovementX: true,
                   hasControls:false }); 
 
 
-console.log('hello')
 
-var verpart1 = new fabric.Circle({ radius: 10, fill: 'blue', top: (window.innerHeight/2), left: window.innerWidth/2-100})
+var verpart1 = new fabric.Circle({ radius: 10, fill: 'blue', top: (window.innerHeight/2), left: window.innerWidth/2-100});
 verpart1.set({
                   hasBorders:false, 
                   hasControls:false }); 
 
-var verpart2 = new fabric.Circle({ radius: 10, fill: 'blue', top: (window.innerHeight/2), left: window.innerWidth/2-100})
+var verpart2 = new fabric.Circle({ radius: 10, fill: 'blue', top: (window.innerHeight/2), left: window.innerWidth/2-100});
 verpart2.set({
                   hasBorders:false, 
                   hasControls:false }); 
 
-var inpart1 = new fabric.Circle({ radius: 10, fill: '#f55', top: (window.innerHeight/2), left: window.innerWidth/2-100})
+var inpart1 = new fabric.Circle({ radius: 10, fill: '#f55', top: (window.innerHeight/2), left: window.innerWidth/2-100});
 inpart1.set({
                   hasBorders:false, 
                   hasControls:false }); 
 
-var inpart2 = new fabric.Circle({ radius: 10, fill: '#f55', top: (window.innerHeight/2), left: window.innerWidth/2-100})
+var inpart2 = new fabric.Circle({ radius: 10, fill: '#f55', top: (window.innerHeight/2), left: window.innerWidth/2-100});
 inpart2.set({
                   hasBorders:false, 
                   hasControls:false }); 
@@ -213,7 +212,7 @@ var expanded = 0;
 var nparticles = 0;  
 
 fermionbox.on('mousedown', function() {
-console.log(expanded)
+console.log(expanded);
 if(expanded<1){
  console.log('selected fermionbox');
  canvas.add(egroup); 
@@ -252,10 +251,10 @@ else if(expanded>0){
   dgroup.animate('left', "+=200", {
   onChange: canvas.renderAll.bind(canvas)
 });
-  canvas.remove(ugroup)
-  canvas.remove(dgroup)
-  canvas.remove(egroup)
-  canvas.remove(vegroup)
+  canvas.remove(ugroup);
+  canvas.remove(dgroup);
+  canvas.remove(egroup);
+  canvas.remove(vegroup);
   expanded=0; 
   console.log(expanded);
 }
@@ -276,7 +275,7 @@ else if(nparticles<2){
   canvas.add(inpart2);
    nparticles=nparticles+1;
  }
- console.log(nparticles)
+ console.log(nparticles);
 
 });
 
@@ -290,7 +289,7 @@ else if(nparticles<2){
   canvas.add(inpart2);
    nparticles=nparticles+1;
  }
- console.log(nparticles)
+ console.log(nparticles);
 
 });
 
@@ -324,8 +323,8 @@ else if(nparticles<2){
 var expanded2=0; 
 interactionbox.on('mousedown', function() {
   if(expanded2<1){ 
-  console.log('hi')
-  canvas.add(gammagroup)
+  console.log('hi');
+  canvas.add(gammagroup);
   gammagroup.animate('top', "-=50", {
   onChange: canvas.renderAll.bind(canvas)
   });
@@ -335,16 +334,16 @@ interactionbox.on('mousedown', function() {
   gammagroup.animate('top', "+=50", {
   onChange: canvas.renderAll.bind(canvas)
   });
-  canvas.remove(gammagroup)
+  canvas.remove(gammagroup);
   expanded2=0; 
  } 
 });
 
 inpart1.on('mousedown', function(){
-  console.log('mouse down')
+  console.log('mouse down');
   console.log(inpart1.clientX, inpart1.clientY);
-  canvas.add(verpart1)
-})
+  canvas.add(verpart1);
+});
 
 inpart1.on({
   'mouse:down': function(e) {
