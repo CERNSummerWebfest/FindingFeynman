@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "" > findingfeynman.js
 
 for f in `find ./src/ -type f -not -name "main.js"`
