@@ -1,0 +1,27 @@
+{
+  "name": "findingfeynman",
+  "version": "0.0.1",
+  "description": "A game about particle physics",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lilhuang/FindingFeynman.git"
+  },
+  "keywords": [
+    "particle",
+    "physics"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lilhuang/FindingFeynman/issues"
+  },
+  "homepage": "https://github.com/lilhuang/FindingFeynman#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-uglify": "^3.0.1"
+  }
+}
