@@ -1,5 +1,6 @@
 function afterAssetsLoaded(global) {
   console.log(global.assets);
+  level1(global);
 }
 
 function loadAssets(global, function_to_run_after_assets_are_loaded) {
