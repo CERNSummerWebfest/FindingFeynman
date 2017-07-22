@@ -107,7 +107,7 @@ var Puzzle = fabric.util.createClass(fabric.Rect, {
 	console.log("Current State:");
 	this.current_state.map(function(edge) {
 		console.log(edge.toString());
-		return;
+		return {};
 	});
   },
 
@@ -117,18 +117,22 @@ var Puzzle = fabric.util.createClass(fabric.Rect, {
 	for (var j = 0; j < this.current_state.length; j++) {
 	var edge = this.current_state[j];
 	//console.log(edge.toString());
-	var startnodematch = this.nodes_list.reduce(function(sofar,node,index) {
-		return sofar + ((node.id == edge.start)? index + 1 : 0);
-	}, 0)	// if the start node of the edge is already in the node list,
+		/* jshint ignore:start */
+	var startnodematch = this.nodes_list.reduce(function(sofar,nod,ind) {
+		return sofar + ((nod.id == edge.start)? ind + 1 : 0);
+	}, 0);	// if the start node of the edge is already in the node list,
+		/* jshint ignore:end */
 	if (startnodematch) 	{ 
 			//console.log(this.nodes_list[startnodematch-1].listOfEdges.indexOf(edge.id));
 			if (this.nodes_list[startnodematch-1].listOfEdges.indexOf(edge.id) == -1) {
 					this.nodes_list[startnodematch-1].addEdge(edge.id);
 				}}
 	else			{ this.nodes_list.push(new Node(edge.start,[edge.id])); }
-	var endnodematch = this.nodes_list.reduce(function(sofar,node,index) {
-		return sofar + ((node.id == edge.end)? index + 1 : 0);
-	}, 0)	// if the end node of the edge is already in the node list,
+		/* jshint ignore:start */	
+	var endnodematch = this.nodes_list.reduce(function(sofar,nod,ind) {
+		return sofar + ((nod.id == edge.end)? ind + 1 : 0);
+	}, 0);	// if the end node of the edge is already in the node list,
+		/* jshint ignore:end */
 	if (endnodematch) 	{ 
 			if (this.nodes_list[endnodematch-1].listOfEdges.indexOf(edge.id) == -1) { 
 					this.nodes_list[endnodematch-1].addEdge(edge.id);
@@ -141,9 +145,37 @@ var Puzzle = fabric.util.createClass(fabric.Rect, {
 	console.log("Nodes:");
 	this.nodes_list.map(function(node) {
 		console.log(node.toString());
-		return;
+		return {};
 	});
   }
 
 });
+
+function loadPuzzle() {
+
+	var puzzle = new Puzzle({
+	  width: 300,
+	  height: 50,
+	  left: 600,
+	  top: 200,
+	  label: 'test',
+	  fill: '#faa',
+	  solution_state: [	new Edge(0,11,0,2),
+				new Edge(1,30,2,3),
+				new Edge(2,-11,3,0),
+				new Edge(3,11,2,1),
+				new Edge(4,-11,1,3)
+				],
+		
+	  current_state: [	new Edge(0,11,0,2),
+				new Edge(1,30,2,3),
+				new Edge(2,-11,3,0),
+				new Edge(3,11,2,1),
+				new Edge(4,-11,1,3)
+				]
+	});
+
+	return puzzle;
+
+}
 

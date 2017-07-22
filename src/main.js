@@ -1,30 +1,10 @@
 function afterAssetsLoaded(global) {
   console.log(global.assets);
-
-var puzzle = new Puzzle({
-  width: 300,
-  height: 50,
-  left: 600,
-  top: 200,
-  label: 'test',
-  fill: '#faa',
-  solution_state: [	new Edge(0,11,0,2),
-			new Edge(1,30,2,3),
-			new Edge(2,-11,3,0),
-			new Edge(3,11,2,1),
-			new Edge(4,-11,1,3)
-			],
-		
-  current_state: [	new Edge(0,11,0,2),
-			new Edge(1,30,2,3),
-			new Edge(2,-11,3,0),
-			new Edge(3,11,2,1),
-			new Edge(4,-11,1,3)
-			]
-});
-
-canvas.add(puzzle);
-
+  //var puzzle = loadPuzzle();
+  console.log(global.assets);
+  console.log(global.canvas);
+  global.canvas.add(new fabric.Rect());
+  //global.canvas.add(puzzle);
 }
 
 function loadAssets(global, function_to_run_after_assets_are_loaded) {
