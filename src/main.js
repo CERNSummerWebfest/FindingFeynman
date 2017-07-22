@@ -1,5 +1,8 @@
 function afterAssetsLoaded(global) {
   console.log(global.assets);
+  for (var a in global.assets) {
+    global.canvas.add(global.assets[a]).renderAll();
+  }
 }
 
 function loadAssets(global, function_to_run_after_assets_are_loaded) {
