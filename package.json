@@ -22,6 +22,7 @@
   "homepage": "https://github.com/lilhuang/FindingFeynman#readme",
   "devDependencies": {
     "grunt": "^1.0.1",
+    "grunt-concat-sourcemap": "^0.4.3",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-uglify": "^3.0.1",

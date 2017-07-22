@@ -1,10 +1,12 @@
 function afterAssetsLoaded(global) {
   console.log(global.assets);
-  //var puzzle = loadPuzzle();
+  var puzzle = loadPuzzle();
   console.log(global.assets);
   console.log(global.canvas);
-  global.canvas.add(new fabric.Rect());
-  //global.canvas.add(puzzle);
+  puzzle.printState();
+  global.canvas.add(puzzle);
+  //level1(global);
+  global.canvas.renderAll();
 }
 
 function loadAssets(global, function_to_run_after_assets_are_loaded) {

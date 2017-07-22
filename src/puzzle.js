@@ -175,6 +175,22 @@ function loadPuzzle() {
 				]
 	});
 
+puzzle.printState();
+puzzle.genNodesList();
+puzzle.printNodesList();
+puzzle.addEdge(22,3,1);
+puzzle.printState();
+puzzle.genNodesList();
+puzzle.printNodesList();
+puzzle.removeEdge(1);
+puzzle.printState();
+puzzle.genNodesList();
+puzzle.printNodesList();
+puzzle.removeNode(3);
+puzzle.printState();
+puzzle.genNodesList();
+puzzle.printNodesList();
+	
 	return puzzle;
 
 }
