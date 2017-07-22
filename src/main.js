@@ -1,4 +1,3 @@
-
 //make a canvas object bound to the html canvas tag with id = "canvas"
 var canvas = new fabric.Canvas('canvas');
 
