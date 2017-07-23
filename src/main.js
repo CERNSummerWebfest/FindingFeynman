@@ -15,14 +15,12 @@ function afterAssetsLoaded(global) {
                               name: "menuPage",
                               });
 
-  global.pages.level1 = new Level1([global.assets.FFlogo], {
+  global.pages.level1 = new Level1({
                               global : global,
                               name: "level1",
                               });
 
   global.pages.startPage.enter();
-
-  //level1(global);
 }
 
 function loadAssets(global, function_to_run_after_assets_are_loaded) {
