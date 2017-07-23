@@ -1,11 +1,18 @@
 function afterAssetsLoaded(global) {
   console.log(global.assets);
 
-// for (var a in global.assets) {
-//   global.canvas.add(global.assets[a]).renderAll();
-// }
+  // for (var a in global.assets) {
+  //   global.canvas.add(global.assets[a]).renderAll();
+  // }
 
-  startPage = new StartPage({}, global.canvas, "startPage", [global.assets.FFlogo, global.assets.startButton]);
+  formatAssets(global);
+
+  startPage = new StartPage([ global.assets.FFlogo, global.assets.startButton ],
+    {
+      name: "startPage",
+      global: global,
+    });
+  //startPage.formatScreen();
   startPage.showScreen();
 
 //  level1(global);

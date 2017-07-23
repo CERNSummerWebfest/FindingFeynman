@@ -1,19 +1,14 @@
-var Page = fabric.util.createClass(fabric.Group, {
+var Page = fabric.util.createClass({
 
   type: 'Page',
   name: '',
-  canvas: { },
+  assets: [ ],
+  global: {},
 
-  initialize: function(options, canvas, name, assets) {
-    this.callSuper('initialize', options);
-
-    console.log(this);
-
-    this.canvas = canvas;
-    this.name = name;
-    for (var a in assets) {
-      this.add(assets[a]);
-    }
+  initialize: function(assets, options) {
+    this.name = options.name;
+    this.assets = assets;
+    this.global = options.global;
   },
 });
 
@@ -22,20 +17,28 @@ var StartPage = fabric.util.createClass(Page, {
 
   type: 'StartPage',
 
-  initialize: function(options, canvas, name) {
-    this.callSuper('initialize', options, canvas, name);
-    console.log("start page!!!");
-    console.log(this);
+  initialize: function(assets, options) {
+    this.callSuper('initialize', assets, options);
+    for (var a in this.assets) {
+      a.selectable = false;
+    }
   },
 
   showScreen: function() {
-    for (var a in [0,1]) {
-      console.log(this[a]);
+    for (var a in this.assets) {
+      this.global.canvas.add(this.assets[a]);
     }
-    console.log(this);
-    this.canvas.add(this);
-    this.canvas.renderAll();
-  }
+    this.global.canvas.renderAll();
+    this.assets[1].on('mousedown', function(obj){
+      return function() {
+        for (var a in obj.assets) {
+          obj.global.canvas.remove(obj.assets[a]);
+        }
+        console.log("clicked");
+        obj.global.canvas.renderAll();
+      };
+    }(this));
+  },
 
 });
 
