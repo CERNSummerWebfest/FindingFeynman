@@ -11,9 +11,6 @@ var Level1 = fabric.util.createClass(Page, {
   formatAssets: function() {
 
 
-    //this.assets[1].on("mousedown", this.moveTo(this.global, "startPage", "menuPage"));
-
-
 
 
    /*
