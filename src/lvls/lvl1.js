@@ -80,9 +80,14 @@ ebox.set({ lockMovementX: true,
                     hasBorders:false, 
                     hasControls:false });
 
-  this.assets.egroup.on('mousedown', function(){
-    console.log('clicked e');
-  });
+  function add_e(page){
+	return function() {
+		console.log('clicked e');
+    		page.assets.goFirstClick = 1;
+	};
+  }
+
+  this.assets.egroup.on('mousedown', add_e(this));
 
 
 
@@ -117,7 +122,24 @@ ebox.set({ lockMovementX: true,
 
   this.assets.fermionbox.on('mousedown', animateE(this));
 
-  this.assets.puzzle = loadPuzzle(this.global);
+  this.assets.puzzle = loadPuzzle(this.global); // Init puzzle structure, preloaded with lvl1
+  this.assets.goFirstClick = 0;
+  this.assets.goSecondClick = 0;
+
+  function uponCanvasClick(options,page) {
+	return function(options){
+		console.log(options.e.clientX, options.e.clientY);
+		if (page.assets.goFirstClick) {
+			page.assets.temp1 = new fabric.Circle({ radius: 6, fill: '#f55', top: options.e.clientY-3, left: options.e.clientX-3});
+		  	page.assets.temp1.set({ hasBorders:false, hasControls:false }); 
+			page.global.canvas.add(page.assets.temp1);
+			page.global.canvas.renderAll();
+		}
+	};
+  }
+  
+  this.global.canvas.on('mouse:down', uponCanvasClick(this.global.options,this));
+
   }
 
 });
