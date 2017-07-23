@@ -29,15 +29,26 @@ var Page = fabric.util.createClass({
   },
 
   addToCanvas: function() {
+    //prevent it from rerendering the page for each loop iteration
+    this.global.canvas.renderOnAddRemove=false;
     for (var key in this.assets) {
       this.global.canvas.add(this.assets[key]);
     }
+    
+    //re-enable the default behaviour
+    this.global.canvas.renderOnAddRemove = true;
+    this.global.canvas.renderAll();
   },
 
   removeFromCanvas: function() {
+    //prevent it from rerendering the page for each loop iteration
+    this.global.canvas.renderOnAddRemove=false;
     for (var key in this.assets) {
       this.global.canvas.remove(this.assets[key]);
     }
+    //re-enable the default behaviour
+    this.global.canvas.renderOnAddRemove = true;
+    this.global.canvas.renderAll();
   },
 
 });
@@ -96,8 +107,37 @@ var MenuPage = fabric.util.createClass(Page, {
   },
 
   formatAssets: function() {
-    this.assets = {eraser: this.global.assets.eraser};
-    this.assets.eraser.on("mousedown", this.moveTo(this.global, "menuPage", "level1"));
+    this.assets = { //level1: this.global.assets.level1, 
+      // level2: this.global.assets.level2,
+      // level3: this.global.assets.level3,
+      // level4: this.global.assets.level4,
+      // level5: this.global.assets.level5,
+      // level6: this.global.assets.level6,
+      // level7: this.global.assets.level7,
+      // level8: this.global.assets.level8,
+      // level9: this.global.assets.level9,
+      // level10: this.global.assets.level10,
+      // level11: this.global.assets.level11,
+      // level12: this.global.assets.level12,
+      menuLabel: this.global.assets.menuLabel,
+      // menuPath: this.global.assets.menuPath,
+    };
+
+    if (this.global.canvas.getWidth() > this.assets.menuLabel.width*2) {
+      this.assets.menuLabel.scale(2);
+      this.assets.menuLabel.set({
+        top: this.assets.menuLabel.height*2*0.25,
+        left: this.global.canvas.getWidth()*0.5-this.assets.menuLabel.width*2.0*0.5,
+      });
+      console.log("canvas too big!");
+    } else {
+      this.assets.menuLabel.scaleToWidth(this.global.canvas.getWidth());
+      this.assets.menuLabel.set({
+        top: this.assets.menuLabel.height*0.25*(this.global.canvas.getWidth()/this.assets.menuLabel.width),
+      });
+    }
+
+    //this.assets.level1.on("mousedown", this.moveTo(this.global, "menuPage", "level1"));
   },
 
 });

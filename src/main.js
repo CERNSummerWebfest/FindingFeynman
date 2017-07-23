@@ -20,7 +20,7 @@ function afterAssetsLoaded(global) {
                               name: "level1",
                               });
 
-  global.pages.startPage.enter();
+  global.pages.level1.enter();
 }
 
 function loadAssets(global, function_to_run_after_assets_are_loaded) {
@@ -34,6 +34,21 @@ function loadAssets(global, function_to_run_after_assets_are_loaded) {
     //{url: "EmmyNoether.svg", name: "noether"},
     {url: "EraserIcon.svg", name: "eraser"},
     {url: "HelpIcon.svg", name: "help"},
+    {url: "Level10Icon.svg", name: "level10"},
+    {url: "Level11Icon.svg", name: "level11"},
+    {url: "Level12Icon.svg", name: "level12"},
+    {url: "Level1Icon.svg", name: "level1"},
+    {url: "Level2Icon.svg", name: "level2"},
+    {url: "Level3Icon.svg", name: "level3"},
+    {url: "Level4Icon.svg", name: "level4"},
+    {url: "Level5Icon.svg", name: "level5"},
+    {url: "Level6Icon.svg", name: "level6"},
+    {url: "Level7Icon.svg", name: "level7"},
+    {url: "Level8Icon.svg", name: "level8"},
+    {url: "Level9Icon.svg", name: "level9"},
+    {url: "MenuLabel.svg", name: "menuLabel"},
+    {url: "MenuPageStuff.svg", name: "menuPage"},
+    {url: "MenuPath.svg", name: "menuPath"},
     {url: "MenuIcon.svg", name: "menu"},
     {url: "NextButton.svg", name: "nextButton"},
     {url: "SM_Background.svg", name: "smBackground"},
@@ -55,7 +70,7 @@ function loadAssets(global, function_to_run_after_assets_are_loaded) {
     {url: "SM_up.svg", name: "smUp"},
     {url: "SM_W.svg", name: "smW"},
     {url: "SM_Z.svg", name: "smZ"},
-    {url: "SMIcon.svg", name: "smIcon"},
+    {url: "SMIcon.svg", name: "sm"},
     {url: "SpeechBubble.svg", name: "speechBubble"},
     {url: "SquiggleIcon.svg", name: "squiggle"},
     ];
