@@ -1,5 +1,6 @@
 # FindingFeynman
 [Try it here](http://goo.gl/T8t7sv)
+![banner](assets/banner.png)
 
 Aim: Explain Feynman Diagrams and the Standard Model to
 students in an easy and entertaining way
