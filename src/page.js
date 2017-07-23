@@ -1,19 +1,15 @@
-var Page = fabric.util.createClass(fabric.Group, {
+var Page = fabric.util.createClass({
 
   type: 'Page',
   name: '',
-  canvas: { },
+  global : {},
+  assets : [],
 
-  initialize: function(options, canvas, name, assets) {
-    this.callSuper('initialize', options);
-
-    console.log(this);
-
-    this.canvas = canvas;
-    this.name = name;
-    for (var a in assets) {
-      this.add(assets[a]);
-    }
+  initialize: function(assets, options) {
+    this.canvas = options.canvas;
+    this.name = options.name;
+    this.global = options.global;
+    this.assets = assets;
   },
 });
 
@@ -22,20 +18,29 @@ var StartPage = fabric.util.createClass(Page, {
 
   type: 'StartPage',
 
-  initialize: function(options, canvas, name) {
-    this.callSuper('initialize', options, canvas, name);
-    console.log("start page!!!");
-    console.log(this);
+  initialize: function(assets, options) {
+    this.callSuper('initialize', assets, options);
+    console.log("Initialised startPage!!!", this);
+
   },
 
-  showScreen: function() {
-    for (var a in [0,1]) {
-      console.log(this[a]);
+  formatAssets function() {
+      assets.forEach(function(e) {e.set({
+      hasControls: false, 
+    });
+  });
+  },
+
+  addToCanvas: function() {
+    //this is a function that returns a callback function
+    //this is needed to get a reference to global inside the callback
+    function makeCanvasAdder(global) {
+      return function(e) { global.canvas.add(e); };
     }
-    console.log(this);
-    this.canvas.add(this);
-    this.canvas.renderAll();
-  }
+
+    //map the callback over the assets
+    this.assets.forEach(makeCanvasAdder(this.global));
+  },
 
 });
 
