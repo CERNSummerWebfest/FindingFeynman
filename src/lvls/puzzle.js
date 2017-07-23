@@ -130,8 +130,8 @@ var Puzzle = fabric.util.createClass(fabric.Object, {
 
 	// Functions for editing the diagram
 
-  addEdge: function(pid, start, end) {
-  	this.current_state.push(new Edge(this.nextid,pid,start,end));
+  addEdge: function(pid, start, end, startx, starty, endx, endy) {
+  	this.current_state.push(new Edge(this.nextid,pid,start,end,startx,starty,endx,endy,this.gcanvas,1));
   	this.nextid += 1;			
   },
 

@@ -77,9 +77,14 @@ ebox.set({ lockMovementX: true,
                     hasBorders:false, 
                     hasControls:false });
 
-  this.assets.egroup.on('mousedown', function(){
-    console.log('clicked e');
-  });
+  function add_e(page){
+	return function() {
+		console.log('clicked e');
+    		page.assets.goClick = 1;
+	};
+  }
+
+  this.assets.egroup.on('mousedown', add_e(this));
 
 
   vebox = new fabric.Rect({ originX: 'center', originY: 'center', fill: 'black', width: 40, height: 40});
@@ -330,13 +335,38 @@ ebox.set({ lockMovementX: true,
                     hasBorders:false, 
                     hasControls:false }); 
 
+  this.assets.puzzle = loadPuzzle(this.global); // Init puzzle structure, preloaded with lvl1
+  this.assets.goClick = 0;
 
-
-
-
+  function uponCanvasClick(options,page) {
+	return function(options){
+		console.log(options.e.clientX, options.e.clientY);
+		if (page.assets.goClick==1) {
+			page.assets.temp1 = new fabric.Circle({ radius: 6, fill: '#f55', top: options.e.clientY-3, left: options.e.clientX-3});
+		  	page.assets.temp1.set({ hasBorders:false, hasControls:false }); 
+			page.global.canvas.add(page.assets.temp1);
+			page.global.canvas.renderAll();
+			page.assets.goClick = 2;
+			page.assets.tempStartX = options.e.clientX;
+			page.assets.tempStartY = options.e.clientY;
+		} else
+		if (page.assets.goClick==2) {
+			page.assets.temp2 = new fabric.Circle({ radius: 6, fill: '#5f5', top: options.e.clientY-3, left: options.e.clientX-3});
+		  	page.assets.temp2.set({ hasBorders:false, hasControls:false }); 
+			page.global.canvas.add(page.assets.temp2);
+			page.global.canvas.renderAll();
+			page.assets.goClick = 0;
+			page.assets.puzzle.addEdge(11,4,5, page.assets.tempStartX, page.assets.tempStartY,
+options.e.clientX,options.e.clientY);
+			page.assets.puzzle.renderDiagram();
+			page.global.canvas.remove(page.assets.temp1);
+			page.global.canvas.remove(page.assets.temp2);
+		}
+	};
   }
+  
+  this.global.canvas.on('mouse:down', uponCanvasClick(this.global.options,this));
 
-  this.assets.puzzle = loadPuzzle(this.global);
   }
 
 });
