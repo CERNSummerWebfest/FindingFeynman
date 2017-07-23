@@ -134,6 +134,20 @@ ebox.set({ lockMovementX: true,
 		  	page.assets.temp1.set({ hasBorders:false, hasControls:false }); 
 			page.global.canvas.add(page.assets.temp1);
 			page.global.canvas.renderAll();
+			page.assets.goFirstClick = 0;
+			page.assets.goSecondClick = 1;
+			page.assets.tempStartX = options.e.clientX;
+			page.assets.tempStartY = options.e.clientY;
+		} else
+		if (page.assets.goSecondClick) {
+			page.assets.temp1 = new fabric.Circle({ radius: 6, fill: '#5f5', top: options.e.clientY-3, left: options.e.clientX-3});
+		  	page.assets.temp1.set({ hasBorders:false, hasControls:false }); 
+			page.global.canvas.add(page.assets.temp1);
+			page.global.canvas.renderAll();
+			page.assets.goSecondClick = 0;
+			page.assets.puzzle.addEdge(11,4,5, page.assets.tempStartX, page.assets.tempStartY,
+options.e.clientX,options.e.clientY);
+			page.assets.puzzle.renderDiagram();
 		}
 	};
   }
