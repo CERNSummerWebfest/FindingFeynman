@@ -50,6 +50,26 @@ module.exports = function(grunt) {
     watch: {
       files: ['<%= jshint.files %>'],
       tasks: ['jshint']
+    },
+    
+    svgmin: {
+        options: {
+            plugins: [{
+                removeViewBox: false
+            }]
+        },
+        dist: {
+        files: [
+          {
+            expand: true,     // Enable dynamic expansion.
+            cwd: 'assets/',      // Src matches are relative to this path.
+            src: ['**/*.svg'], // Actual pattern(s) to match.
+            dest: 'dist/assets/',   // Destination path prefix.
+            ext: '.svg',   // Dest filepaths will have this extension.
+            extDot: 'first'   // Extensions in filenames begin after the first dot
+          },
+        ],
+        }
     }
   });
 
@@ -58,9 +78,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-svgmin');
   grunt.loadNpmTasks('grunt-concat-sourcemap');
 
   // the default task can be run just by typing "grunt" on the command line
-  grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'svgmin', 'concat', 'uglify']);
 
 };
