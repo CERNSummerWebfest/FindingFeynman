@@ -96,7 +96,8 @@ var MenuPage = fabric.util.createClass(Page, {
   },
 
   formatAssets: function() {
-    //nothing here yet
+    this.assets[0].on("mousedown", this.moveTo(this.global, "menuPage", "level1"));
+
   },
 
 });

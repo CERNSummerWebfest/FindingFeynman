@@ -32,7 +32,6 @@ function level1(global){
   var egroup = new fabric.Group([ebox, etext], {
   top: window.innerHeight-100, left: (window.innerWidth/2)-50}
   );
-
   egroup.set({ lockMovementX: true, 
                     lockMovementY: true,
                     hasBorders:false, 
@@ -531,5 +530,6 @@ var outline2 = new fabric.Line([50, 50, 100, 100], {
     canvas.renderAll();
   });
 
+console.log('bla');
 
 }
