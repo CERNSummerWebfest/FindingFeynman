@@ -32,7 +32,6 @@ function level1(global){
   var egroup = new fabric.Group([ebox, etext], {
   top: window.innerHeight-100, left: (window.innerWidth/2)-50}
   );
-
   egroup.set({ lockMovementX: true, 
                     lockMovementY: true,
                     hasBorders:false, 
