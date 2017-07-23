@@ -17,12 +17,12 @@ information
 
 
 ## Development quotes
-"Guys, with one click of a button I could delete this repository"
-"I've only ever pushed to master before so..."
-"Learn Javascript they said, it would fun they said..."
-"2am:: Has reverted to typing with a single finger"
-"Uhhh... what's npm?"
-"How do you define a new function?"
+* "Guys, with one click of a button I could delete this repository"
+* "I've only ever pushed to master before so..."
+* "Learn Javascript they said, it would fun they said..."
+* "2am:: Has reverted to typing with a single finger"
+* "Uhhh... what's npm?"
+* "How do you define a new function?"
 
-One team member has named her branch after herself, which lead to constant: 
+* One team member has named her branch after herself, which lead to constant: 
 "You need to pull Master into Maria"
