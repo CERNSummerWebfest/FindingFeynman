@@ -3,6 +3,7 @@ var Page = fabric.util.createClass({
   type: 'Page',
   name: '',
   global: {},
+  assets: {},
 
   initialize: function(options) {
     this.name = options.name;
@@ -88,10 +89,9 @@ var MenuPage = fabric.util.createClass(Page, {
 
   type: 'MenuPage',
 
-  initialize: function(assets, options) {
-    this.callSuper('initialize', assets, options);
+  initialize: function(options) {
+    this.callSuper('initialize', options);
     console.log("Initialised menuPage!!!", this);
-
     this.formatAssets();
   },
 
@@ -127,7 +127,6 @@ var MenuPage = fabric.util.createClass(Page, {
     }
 
     //this.assets.level1.on("mousedown", this.moveTo(this.global, "menuPage", "level1"));
-
   },
 
 });
