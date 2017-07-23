@@ -53,13 +53,13 @@ var StartPage = fabric.util.createClass(Page, {
   },
 
   formatAssets: function() {
-    this.assets = { FFlogo: this.global.assets.FFlogo, startButton: this.global.assets.startButton };
+    this.assets = { FFlogo: this.global.assets.help, startButton: this.global.assets.startButton };
 
     if (this.global.canvas.getWidth() > this.assets.FFlogo.width*2) {
       this.assets.FFlogo.scale(2);
       this.assets.FFlogo.set({
-        top: 0-this.assets.FFlogo.height*0.1*2.0,
-        left: this.global.canvas.getWidth()*0.5-this.assets.FFlogo.width*2.0*0.5,
+        top: 0-this.assets.FFlogo.height*0.1*2,
+        left: this.global.canvas.getWidth()*0.5-this.assets.FFlogo.width*2*0.5,
       });
       console.log("canvas too big!");
     } else {
@@ -76,9 +76,9 @@ var StartPage = fabric.util.createClass(Page, {
       left: this.global.canvas.getWidth()*0.5-this.assets.startButton.width*0.25,
     });
 
-    for (var a in this.assets) {
-      this.assets[a].selectable = false;
-    }
+    // for (var a in this.assets) {
+    //   this.assets[a].selectable = false;
+    // }
 
     this.assets.startButton.on("mousedown", this.moveTo(this.global, "startPage", "menuPage"));
   },
@@ -112,17 +112,17 @@ var MenuPage = fabric.util.createClass(Page, {
       // menuPath: this.global.assets.menuPath,
     };
 
-    if (this.global.canvas.getWidth() > this.assets.menuLabel.width*2) {
-      this.assets.menuLabel.scale(2);
+    if (this.global.canvas.getWidth() > this.assets.menuLabel.width*0.5) {
+      this.assets.menuLabel.scale(0.5);
       this.assets.menuLabel.set({
-        top: this.assets.menuLabel.height*2*0.25,
-        left: this.global.canvas.getWidth()*0.5-this.assets.menuLabel.width*2.0*0.5,
+        top: this.assets.menuLabel.height*0.1*0.5,
+        left: this.global.canvas.getWidth()*0.5-this.assets.menuLabel.width*0.5*0.5,
       });
       console.log("canvas too big!");
     } else {
       this.assets.menuLabel.scaleToWidth(this.global.canvas.getWidth());
       this.assets.menuLabel.set({
-        top: this.assets.menuLabel.height*0.25*(this.global.canvas.getWidth()/this.assets.menuLabel.width),
+        top: this.assets.menuLabel.height*0.1*(this.global.canvas.getWidth()/this.assets.menuLabel.width),
       });
     }
 
