@@ -20,6 +20,11 @@ function afterAssetsLoaded(global) {
                               name: "level1",
                               });
 
+  global.pages.smPage = new SMPage({
+                              global : global,
+                              name: "smPage",
+                              });
+
   global.pages.startPage.enter();
 }
 
@@ -71,6 +76,7 @@ function loadAssets(global, function_to_run_after_assets_are_loaded) {
     {url: "SM_W.svg", name: "smW"},
     {url: "SM_Z.svg", name: "smZ"},
     {url: "SMIcon.svg", name: "sm"},
+    {url: "StandardModelImage_2.svg", name: "smImage"},
     {url: "SpeechBubble.svg", name: "speechBubble"},
     {url: "SquiggleIcon.svg", name: "squiggle"},
     ];

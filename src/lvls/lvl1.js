@@ -9,10 +9,6 @@ var Level1 = fabric.util.createClass(Page, {
   },
 
   formatAssets: function() {
-
-
-
-
    /*
    //canvas.add(vegroup); 
    vegroup.animate('left', "-=100", {
@@ -27,16 +23,6 @@ var Level1 = fabric.util.createClass(Page, {
     onChange: canvas.renderAll.bind(canvas)
   });
   */
-
-
-
-
-
-
-
-
-
-
 
   },
 
@@ -484,6 +470,35 @@ options.e.clientX,options.e.clientY);
   }
   
   this.global.canvas.on('mouse:down', uponCanvasClick(this.global.options,this));
+
+  this.assets.nextButton = this.global.assets.nextButton;
+  this.assets.doneButton = this.global.assets.doneButton;
+
+  this.global.canvas.add(this.assets.nextButton);
+  this.global.canvas.add(this.assets.doneButton);
+
+  this.assets.nextButton.scale(0.5);
+  this.assets.nextButton.set({
+    top: this.global.canvas.getHeight()*0.8,
+    left: this.global.canvas.getWidth()*0.7,
+  });
+
+  this.assets.doneButton.scale(0.5);
+  this.assets.doneButton.set({
+    top: this.global.canvas.getHeight()*0.8,
+    left: this.global.canvas.getWidth()*0.1,
+  });
+
+  for (var a in this.assets) {
+    this.assets[a].selectable = false;
+  }
+
+  this.assets.nextButton.on('mouse:down', function() {
+    console.log("clicked next button");
+  });
+  //this.assets.nextButton.on('mousedown', this.moveTo(this.global, "level1", "menuPage"));
+
+  this.global.canvas.renderAll();
 
   }
 
