@@ -22,3 +22,6 @@ information
 "2am:: Has reverted to typing with a single finger"
 "Uhhh... what's npm?"
 "How do you define a new function?"
+
+One team member has named her branch after herself, which lead to constant: 
+"You need to pull Master into Maria"
