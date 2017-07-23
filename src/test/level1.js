@@ -531,5 +531,6 @@ var outline2 = new fabric.Line([50, 50, 100, 100], {
     canvas.renderAll();
   });
 
+console.log('bla');
 
 }
