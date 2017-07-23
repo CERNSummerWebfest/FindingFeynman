@@ -24,7 +24,7 @@ var StartPage = fabric.util.createClass(Page, {
 
   },
 
-  formatAssets function() {
+  formatAssets: function() {
       assets.forEach(function(e) {e.set({
       hasControls: false, 
     });
