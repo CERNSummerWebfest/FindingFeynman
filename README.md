@@ -8,3 +8,6 @@ npm install
 
 #to checking and build
 grunt
+
+#useful
+set object.hasControls = false;
