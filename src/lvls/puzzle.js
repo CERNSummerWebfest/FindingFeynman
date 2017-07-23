@@ -59,9 +59,11 @@ var Edge = fabric.util.createClass({
 //console.log(edge.toString());
 
 var Node = fabric.util.createClass({
-  initialize: function(id, listOfEdges) {
+  initialize: function(id, listOfEdges, top, left) {
     this.id = id || 0;
-    this.listOfEdges = listOfEdges || [];
+    this.listOfEdges = listOfEdges || []; 
+    this.top = top || 0;
+    this.left = left || 0;
   },
   toString: function() {
     return '( ID: ' + this.id + ' , EDGES: ' + this.listOfEdges.toString() + ' )';
@@ -84,7 +86,7 @@ var Puzzle = fabric.util.createClass(fabric.Object, {
     this.set('current_state', options.current_state || '');
 	// Maximum current edge id + 1
     this.set('nextid', this.current_state.length || 0); 	// Note: only applies at init()
-    this.set('nodes_list', []);	// Contains only start and end node, must be manually 'gen'd'
+    this.set('nodes_list', []);	// Contains nothing, must be manually 'gen'd'
   },
 
 //  toObject: function() {
@@ -181,7 +183,7 @@ var Puzzle = fabric.util.createClass(fabric.Object, {
 			if (this.nodes_list[endnodematch-1].listOfEdges.indexOf(ಠ_ಠ.id) == -1) { 
 					this.nodes_list[endnodematch-1].addEdge(ಠ_ಠ.id);
 				}}
-	else			{ this.nodes_list.push(new Node(ಠ_ಠ.end,[ಠ_ಠ.id])); }
+	else			{ this.nodes_list.push(new Node(ಠ_ಠ.end,[ಠ_ಠ.id],)); }
     }
   },
 
