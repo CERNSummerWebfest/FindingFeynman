@@ -4,12 +4,12 @@ function afterAssetsLoaded(global) {
   //   global.canvas.add(global.assets[a]).renderAll();
   // }
 
-  formatAssets(global);
-
   startPage = new StartPage([ global.assets.FFlogo, global.assets.startButton ],{
                                 name: "startPage",
                                 global: global,
                               });
+
+  startPage.formatAssets();
   // startPage.showScreen();
   startPage.addToCanvas();
 

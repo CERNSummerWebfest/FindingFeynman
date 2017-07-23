@@ -20,7 +20,7 @@ var StartPage = fabric.util.createClass(Page, {
   initialize: function(assets, options) {
     this.callSuper('initialize', assets, options);
     for (var a in this.assets) {
-      a.selectable = false;
+      this.assets[a].selectable = true;
     }
   },
 
@@ -42,19 +42,28 @@ var StartPage = fabric.util.createClass(Page, {
   },
 
   formatAssets: function() {
-    this.global.assets.FFlogo.scale(2);
-    this.global.assets.FFlogo.set({
-      top: -75,
-      left: window.innerWidth*0.05
-    });
-    this.global.assets.FFlogo.set('selectable', false);
+    if (this.global.canvas.getWidth() > this.global.assets.FFlogo.width*2) {
+      this.global.assets.FFlogo.scale(2);
+      this.global.assets.FFlogo.set({
+        top: 0-this.global.assets.FFlogo.height*0.1*2.0,
+        left: this.global.canvas.getWidth()*0.5-this.global.assets.FFlogo.width*2.0*0.5,
+      });
+      console.log("canvas too big!");
+    } else {
+      this.global.assets.FFlogo.scaleToWidth(this.global.canvas.getWidth());
+      this.global.assets.FFlogo.set({
+        top: 0-this.global.assets.FFlogo.height*0.1*(this.global.canvas.getWidth()/this.global.assets.FFlogo.width),
+      });
+    }
+    //this.global.assets.FFlogo.set('selectable', false);
 
+    this.global.assets.startButton.scale(this.global.canvas.getWidth());
     this.global.assets.startButton.scale(0.5);
     this.global.assets.startButton.set({
-      top: 500,
-      left: window.innerWidth*0.45
+      top: this.global.canvas.getHeight()*0.8-this.global.assets.startButton.height*0.5,
+      left: this.global.canvas.getWidth()*0.5-this.global.assets.startButton.width*0.25,
     });
-    this.global.assets.startButton.set('selectable', false);
+    //this.global.assets.startButton.set('selectable', false);
   },
 
   addToCanvas: function() {
