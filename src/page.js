@@ -172,7 +172,7 @@ var MenuPage = fabric.util.createClass(Page, {
       this.assets.level12.scale(0.5);
       this.assets.level12.set({
         top: this.assets.menuLabel.height*1.1*0.5+this.assets.menuPath.height*0.5*0.8,
-        left: this.global.canvas.getWidth()*0.5+this.assets.menuPath.width*0.5*0.5,
+        left: this.global.canvas.getWidth()*0.5+this.assets.menuPath.width*0.5*0.1,
       });
       console.log("canvas too big!");
     } else {

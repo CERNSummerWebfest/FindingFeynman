@@ -234,7 +234,6 @@ ebox.set({ lockMovementX: true,
     };
   }
 
-<<<<<<< HEAD
   this.assets.fermiongroup.on('mousedown', animateE(this));
 
   gammabox = new fabric.Rect({ originX: 'center', originY: 'center', fill: 'black', width: 40, height: 40});
@@ -336,9 +335,6 @@ ebox.set({ lockMovementX: true,
 
 
   }
-=======
-  this.assets.fermionbox.on('mousedown', animateE(this));
->>>>>>> master
 
   this.assets.puzzle = loadPuzzle(this.global);
   }
