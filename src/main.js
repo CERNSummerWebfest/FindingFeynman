@@ -1,11 +1,6 @@
 function afterAssetsLoaded(global) {
   console.log(global.assets);
-  var puzzle = loadPuzzle();
-  console.log(global.assets);
-  console.log(global.canvas);
-  puzzle.printState();
-  global.canvas.add(puzzle);
-  //level1(global);
+  level1(global);
   global.canvas.renderAll();
 }
 

@@ -15,6 +15,8 @@ function level1(global){
   });
 */
 
+  // Setup buttons and framing of level
+
   var ebox = new fabric.Rect({ originX: 'center', originY: 'center', fill: 'black', width: 40, height: 40});
   ebox.set('fill', 'white');
   ebox.set({ strokeWidth: 3, stroke: 'black' });
@@ -276,13 +278,30 @@ function level1(global){
   });
 
 
+  // Level begins!
 
+  var puzzle = loadPuzzle(global);		// Init puzzle structure, preloaded with lvl1
+  var goFirstClick = 0;
+  var goSecondClick = 0;
+  
+  canvas.on('mouse:down', function(options) {
+    console.log(options.e.clientX, options.e.clientY);
 
+    if (goFirstClick) {
+	var temp1 = new fabric.Circle({ radius: 6, fill: '#f55', top: options.e.clientY-3, left: options.e.clientX-3});
+  	temp1.set({ hasBorders:false, hasControls:false }); 
+	canvas.add(temp1);
+	canvas.renderAll();
+    }
 
+  });
+	
   ugroup.on('mousedown', function() {
    console.log('selected u');
    if(nparticles<1){
-    canvas.add(inpart1);
+	goFirstClick = 1;
+
+    //canvas.add(inpart1);
      nparticles=nparticles+1;
    }
   else if(nparticles<2){
@@ -450,8 +469,8 @@ var line2 = new fabric.Line([50, 50, 100, 100], {
   });
 
 var interactionline = new fabric.Line([50, 50, 100, 100], {
-    fill: 'blue',
-    stroke: 'blue',
+    fill: 'green',
+    stroke: 'green',
     strokeWidth: 1,
     selectable: true,
     hasControls: false,
