@@ -9,8 +9,6 @@ var Level1 = fabric.util.createClass(Page, {
   },
 
   formatAssets: function() {
-
-  this.global.assets.FFlogo.scale(1);
     //this.assets[1].on("mousedown", this.moveTo(this.global, "startPage", "menuPage"));
 
 

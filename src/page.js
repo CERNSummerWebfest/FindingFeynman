@@ -53,13 +53,13 @@ var StartPage = fabric.util.createClass(Page, {
   },
 
   formatAssets: function() {
-    this.assets = { FFlogo: this.global.assets.help, startButton: this.global.assets.startButton };
+    this.assets = { FFlogo: this.global.assets.FFlogo, startButton: this.global.assets.startButton };
 
     if (this.global.canvas.getWidth() > this.assets.FFlogo.width*2) {
       this.assets.FFlogo.scale(2);
       this.assets.FFlogo.set({
-        top: 0-this.assets.FFlogo.height*0.1*2,
-        left: this.global.canvas.getWidth()*0.5-this.assets.FFlogo.width*2*0.5,
+        top: 0-this.assets.FFlogo.height*0.1*2.0,
+        left: this.global.canvas.getWidth()*0.5-this.assets.FFlogo.width*2.0*0.5,
       });
       console.log("canvas too big!");
     } else {
@@ -76,9 +76,9 @@ var StartPage = fabric.util.createClass(Page, {
       left: this.global.canvas.getWidth()*0.5-this.assets.startButton.width*0.25,
     });
 
-    // for (var a in this.assets) {
-    //   this.assets[a].selectable = false;
-    // }
+    for (var a in this.assets) {
+      this.assets[a].selectable = false;
+    }
 
     this.assets.startButton.on("mousedown", this.moveTo(this.global, "startPage", "menuPage"));
   },
@@ -96,7 +96,10 @@ var MenuPage = fabric.util.createClass(Page, {
   },
 
   formatAssets: function() {
-    this.assets = { //level1: this.global.assets.level1, 
+    this.assets = {
+      menuLabel: this.global.assets.menuLabel,
+      menuPath: this.global.assets.menuPath, 
+      level1: this.global.assets.level1, 
       // level2: this.global.assets.level2,
       // level3: this.global.assets.level3,
       // level4: this.global.assets.level4,
@@ -107,9 +110,7 @@ var MenuPage = fabric.util.createClass(Page, {
       // level9: this.global.assets.level9,
       // level10: this.global.assets.level10,
       // level11: this.global.assets.level11,
-      // level12: this.global.assets.level12,
-      menuLabel: this.global.assets.menuLabel,
-      // menuPath: this.global.assets.menuPath,
+      level12: this.global.assets.level12,
     };
 
     if (this.global.canvas.getWidth() > this.assets.menuLabel.width*0.5) {
@@ -126,7 +127,57 @@ var MenuPage = fabric.util.createClass(Page, {
       });
     }
 
-    //this.assets.level1.on("mousedown", this.moveTo(this.global, "menuPage", "level1"));
+    if (this.global.canvas.getWidth() > this.assets.menuPath.width*0.5) {
+      this.assets.menuPath.scale(0.5);
+      this.assets.menuPath.set({
+        top: this.assets.menuLabel.height*1.3*0.5,
+        left: this.global.canvas.getWidth()*0.5-this.assets.menuPath.width*0.5*0.5,
+      });
+      console.log("canvas too big!");
+    } else {
+      this.assets.menuPath.scaleToWidth(this.global.canvas.getWidth());
+      this.assets.menuPath.set({
+        top: this.assets.menuPath.height*0.1*(this.global.canvas.getWidth()/this.assets.menuPath.width),
+      });
+    }
+
+    this.assets.level1.setFill('white');
+    if (this.global.canvas.getWidth() > this.assets.menuLabel.width*0.5) {
+      this.assets.level1.scale(0.5);
+      this.assets.level1.set({
+        top: this.assets.menuLabel.height*1.1*0.5,
+        left: this.global.canvas.getWidth()*0.5-this.assets.menuPath.width*0.5*0.5,
+      });
+      console.log("canvas too big!");
+    } else {
+      this.assets.level1.scale(this.global.canvas.getWidth()/this.assets.menuLabel.width);
+      this.assets.level1.set({
+        top: this.assets.level1.height*0.1*(this.global.canvas.getWidth()/this.assets.level1.width),
+      });
+    }
+
+    this.assets.level12.setFill('white');
+    if (this.global.canvas.getWidth() > this.assets.menuLabel.width*0.5) {
+      this.assets.level12.scale(0.5);
+      this.assets.level12.set({
+        top: this.assets.menuLabel.height*1.1*0.5+this.assets.menuPath.height*0.5*0.8,
+        left: this.global.canvas.getWidth()*0.5+this.assets.menuPath.width*0.5*0.5,
+      });
+      console.log("canvas too big!");
+    } else {
+      this.assets.level12.scale(this.global.canvas.getWidth()/this.assets.menuLabel.width);
+      this.assets.level12.set({
+        top: this.assets.level1.height*0.1*(this.global.canvas.getWidth()/this.assets.level12.width),
+      });
+    }
+
+
+
+    for (var a in this.assets) {
+      this.assets[a].selectable = false;
+    }
+
+    this.assets.level1.on("mousedown", this.moveTo(this.global, "menuPage", "level1"));
   },
 
 });
