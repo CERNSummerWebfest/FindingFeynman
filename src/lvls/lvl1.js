@@ -83,7 +83,7 @@ ebox.set({ lockMovementX: true,
   function add_e(page){
 	return function() {
 		console.log('clicked e');
-    		page.assets.goFirstClick = 1;
+    		page.assets.goClick = 1;
 	};
   }
 
@@ -123,31 +123,31 @@ ebox.set({ lockMovementX: true,
   this.assets.fermionbox.on('mousedown', animateE(this));
 
   this.assets.puzzle = loadPuzzle(this.global); // Init puzzle structure, preloaded with lvl1
-  this.assets.goFirstClick = 0;
-  this.assets.goSecondClick = 0;
+  this.assets.goClick = 0;
 
   function uponCanvasClick(options,page) {
 	return function(options){
 		console.log(options.e.clientX, options.e.clientY);
-		if (page.assets.goFirstClick) {
+		if (page.assets.goClick==1) {
 			page.assets.temp1 = new fabric.Circle({ radius: 6, fill: '#f55', top: options.e.clientY-3, left: options.e.clientX-3});
 		  	page.assets.temp1.set({ hasBorders:false, hasControls:false }); 
 			page.global.canvas.add(page.assets.temp1);
 			page.global.canvas.renderAll();
-			page.assets.goFirstClick = 0;
-			page.assets.goSecondClick = 1;
+			page.assets.goClick = 2;
 			page.assets.tempStartX = options.e.clientX;
 			page.assets.tempStartY = options.e.clientY;
 		} else
-		if (page.assets.goSecondClick) {
-			page.assets.temp1 = new fabric.Circle({ radius: 6, fill: '#5f5', top: options.e.clientY-3, left: options.e.clientX-3});
-		  	page.assets.temp1.set({ hasBorders:false, hasControls:false }); 
-			page.global.canvas.add(page.assets.temp1);
+		if (page.assets.goClick==2) {
+			page.assets.temp2 = new fabric.Circle({ radius: 6, fill: '#5f5', top: options.e.clientY-3, left: options.e.clientX-3});
+		  	page.assets.temp2.set({ hasBorders:false, hasControls:false }); 
+			page.global.canvas.add(page.assets.temp2);
 			page.global.canvas.renderAll();
-			page.assets.goSecondClick = 0;
+			page.assets.goClick = 0;
 			page.assets.puzzle.addEdge(11,4,5, page.assets.tempStartX, page.assets.tempStartY,
 options.e.clientX,options.e.clientY);
 			page.assets.puzzle.renderDiagram();
+			page.global.canvas.remove(page.assets.temp1);
+			page.global.canvas.remove(page.assets.temp2);
 		}
 	};
   }
