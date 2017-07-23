@@ -183,7 +183,7 @@ var Puzzle = fabric.util.createClass(fabric.Object, {
 			if (this.nodes_list[endnodematch-1].listOfEdges.indexOf(ಠ_ಠ.id) == -1) { 
 					this.nodes_list[endnodematch-1].addEdge(ಠ_ಠ.id);
 				}}
-	else			{ this.nodes_list.push(new Node(ಠ_ಠ.end,[ಠ_ಠ.id],)); }
+	else			{ this.nodes_list.push(new Node(ಠ_ಠ.end,[ಠ_ಠ.id],0,0)); }
     }
   },
 
