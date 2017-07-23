@@ -29,15 +29,26 @@ var Page = fabric.util.createClass({
   },
 
   addToCanvas: function() {
+    //prevent it from rerendering the page for each loop iteration
+    this.global.canvas.renderOnAddRemove=false;
     for (var key in this.assets) {
       this.global.canvas.add(this.assets[key]);
     }
+    
+    //re-enable the default behaviour
+    this.global.canvas.renderOnAddRemove = true;
+    this.global.canvas.renderAll();
   },
 
   removeFromCanvas: function() {
+    //prevent it from rerendering the page for each loop iteration
+    this.global.canvas.renderOnAddRemove=false;
     for (var key in this.assets) {
       this.global.canvas.remove(this.assets[key]);
     }
+    //re-enable the default behaviour
+    this.global.canvas.renderOnAddRemove = true;
+    this.global.canvas.renderAll();
   },
 
 });
