@@ -20,7 +20,7 @@ function afterAssetsLoaded(global) {
                               name: "level1",
                               });
 
-  global.pages.level1.enter();
+  global.pages.startPage.enter();
 }
 
 function loadAssets(global, function_to_run_after_assets_are_loaded) {
