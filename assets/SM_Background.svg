@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="-46 147.6 1345.7 1147.4" style="enable-background:new -46 147.6 1345.7 1147.4;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;}
+	.st1{fill:none;stroke:#000000;stroke-width:3;stroke-miterlimit:10;}
+	.st2{fill:none;stroke:#82D4F7;stroke-width:4;stroke-miterlimit:10;}
+	.st3{fill:none;stroke:#A6D493;stroke-width:3;stroke-miterlimit:10;}
+	.st4{fill:none;stroke:#F49FA0;stroke-width:3;stroke-miterlimit:10;}
+	.st5{font-family:'ImprintMT-Shadow';}
+	.st6{font-size:36px;}
+	.st7{font-size:36.0026px;}
+	.st8{fill:none;stroke:#C09BC8;stroke-width:4;stroke-miterlimit:10;}
+	.st9{font-size:60px;}
+</style>
+<rect id="XMLID_50_" x="-603.9" y="843.3" class="st0" width="71.2" height="61"/>
+<g id="XMLID_60_">
+	<path id="XMLID_61_" class="st1" d="M1254.8,1257.8H-1.1c-6.6,0-12-5.4-12-12V196.8c0-6.6,5.4-12,12-12h1255.9c6.6,0,12,5.4,12,12
+		v1048.9C1266.8,1252.3,1261.4,1257.8,1254.8,1257.8z"/>
+	<path id="XMLID_62_" class="st2" d="M72.6,786H36c-6.6,0-12-5.4-12-12V415.1c0-6.6,5.4-12,12-12h36.6c6.6,0,12,5.4,12,12v358.8
+		C84.6,780.5,79.2,786,72.6,786z"/>
+	<path id="XMLID_63_" class="st3" d="M71.6,1200.3H35c-6.6,0-12-5.4-12-12V829.5c0-6.6,5.4-12,12-12h36.6c6.6,0,12,5.4,12,12v358.8
+		C83.6,1194.9,78.2,1200.3,71.6,1200.3z"/>
+	<path id="XMLID_64_" class="st4" d="M791.6,1200.3H755c-6.6,0-12-5.4-12-12V415.1c0-6.6,5.4-12,12-12h36.6c6.6,0,12,5.4,12,12
+		v773.2C803.6,1194.9,798.2,1200.3,791.6,1200.3z"/>
+	<text id="XMLID_65_" transform="matrix(7.011221e-03 -1 1 7.011221e-03 64.7526 664.2344)" class="st5 st6">Quarks</text>
+	<text id="XMLID_66_" transform="matrix(8.440342e-03 -1 1 8.440342e-03 62.7648 1079.2505)" class="st5 st7">Leptons</text>
+	<text id="XMLID_67_" transform="matrix(-6.335963e-03 -1 1 -6.335963e-03 783.4622 843.9297)" class="st5 st6">Bosons</text>
+	<path id="XMLID_68_" class="st8" d="M1217.1,374.4H36c-6.6,0-12-5.4-12-12V244.2c0-6.6,5.4-12,12-12h1181.1c6.6,0,12,5.4,12,12
+		v118.1C1229.1,368.9,1223.7,374.4,1217.1,374.4z"/>
+	<rect id="XMLID_70_" x="238.7" y="277.8" class="st0" width="776.3" height="61"/>
+	<text id="XMLID_69_" transform="matrix(1 0 0 1 238.7237 319.6333)" class="st5 st9">THE STANDARD MODEL</text>
+</g>
+</svg>
