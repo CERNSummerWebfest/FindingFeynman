@@ -93,21 +93,29 @@ ebox.set({ lockMovementX: true,
                     lockMovementY: true,
                     hasBorders:false, 
                     hasControls:false });
+  this.global.canvas.add(this.assets.fermionbox);
 
 
+  this.assets.fermionbox.expanded=false; 
   function animateE(page) { 
     return function() {
-       console.log('selected fermionbox');
+       console.log('selected fermionbox', page);
+       if(page.assets.fermionbox.expanded==false){
        page.global.canvas.add(page.assets.egroup); 
        page.assets.egroup.animate('left', "-=50", {
-        onChange: page.global.canvas.renderAll.bind(canvas),
+        onChange: page.global.canvas.renderAll.bind(page.global.canvas),
       });
+       page.assets.fermionbox.expanded=true; 
+     } else {
+      page.assets.egroup.animate('left', "+=50", {
+        onChange: page.global.canvas.renderAll.bind(page.global.canvas),
+         });
+        page.assets.fermionbox.expanded=false; 
+     }
     };
   }
 
   this.assets.fermionbox.on('mousedown', animateE(this));
-      this.callSuper('enter');
-
   }
 
 
