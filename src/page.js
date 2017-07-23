@@ -2,14 +2,11 @@ var Page = fabric.util.createClass({
 
   type: 'Page',
   name: '',
-  global : {},
-  assets : [],
+  global: {},
 
-  initialize: function(assets, options) {
-    this.canvas = options.canvas;
+  initialize: function(options) {
     this.name = options.name;
     this.global = options.global;
-    this.assets = assets;
   },
 
   enter: function() {
@@ -31,25 +28,15 @@ var Page = fabric.util.createClass({
   },
 
   addToCanvas: function() {
-    //this is a function that returns a callback function
-    //this is needed to get a reference to global inside the callback
-    function makeCanvasAdder(global) {
-      return function(e) { global.canvas.add(e); };
+    for (var key in this.assets) {
+      this.global.canvas.add(this.assets[key]);
     }
-
-    //map the callback over the assets
-    this.assets.forEach(makeCanvasAdder(this.global));
   },
 
   removeFromCanvas: function() {
-    //this is a function that returns a callback function
-    //this is needed to get a reference to global inside the callback
-    function makeCanvasRemover(global) {
-      return function(e) { global.canvas.remove(e); };
+    for (var key in this.assets) {
+      this.global.canvas.remove(this.assets[key]);
     }
-
-    //map the callback over the assets
-    this.assets.forEach(makeCanvasRemover(this.global));
   },
 
 });
@@ -59,24 +46,40 @@ var StartPage = fabric.util.createClass(Page, {
 
   type: 'StartPage',
 
-  initialize: function(assets, options) {
-    this.callSuper('initialize', assets, options);
-    console.log("Initialised startPage!!!", this);
-
+  initialize: function(options) {
+    this.callSuper('initialize', options);
     this.formatAssets();
   },
 
   formatAssets: function() {
-    this.assets.forEach(
-      function(e) {
-        e.set({
-          hasControls: false,
-        });
+    this.assets = { FFlogo: this.global.assets.FFlogo, startButton: this.global.assets.startButton };
+
+    if (this.global.canvas.getWidth() > this.assets.FFlogo.width*2) {
+      this.assets.FFlogo.scale(2);
+      this.assets.FFlogo.set({
+        top: 0-this.assets.FFlogo.height*0.1*2.0,
+        left: this.global.canvas.getWidth()*0.5-this.assets.FFlogo.width*2.0*0.5,
+      });
+      console.log("canvas too big!");
+    } else {
+      this.assets.FFlogo.scaleToWidth(this.global.canvas.getWidth());
+      this.assets.FFlogo.set({
+        top: 0-this.assets.FFlogo.height*0.1*(this.global.canvas.getWidth()/this.assets.FFlogo.width),
+      });
+    }
+
+    this.assets.startButton.scale(this.global.canvas.getWidth());
+    this.assets.startButton.scale(0.5);
+    this.assets.startButton.set({
+      top: this.global.canvas.getHeight()*0.8-this.assets.startButton.height*0.5,
+      left: this.global.canvas.getWidth()*0.5-this.assets.startButton.width*0.25,
     });
 
-    this.assets[1].on("mousedown", this.moveTo(this.global, "startPage", "menuPage"));
+    for (var a in this.assets) {
+      this.assets[a].selectable = false;
+    }
 
-
+    this.assets.startButton.on("mousedown", this.moveTo(this.global, "startPage", "menuPage"));
   },
 
 });

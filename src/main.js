@@ -1,12 +1,16 @@
+
+
 function afterAssetsLoaded(global) {
   console.log("Loaded assets: ", global.assets);
-
-  global.pages.startPage = new StartPage([global.assets.FFlogo, global.assets.startButton], {
+  // for (var a in global.assets) {
+  //   global.canvas.add(global.assets[a]).renderAll();
+  // }
+  global.pages.startPage = new StartPage({
                               global: global,
                               name: "startPage",
                               });
 
-  global.pages.menuPage = new MenuPage([global.assets.eraser], {
+  global.pages.menuPage = new MenuPage({
                               global : global,
                               name: "menuPage",
                               });
