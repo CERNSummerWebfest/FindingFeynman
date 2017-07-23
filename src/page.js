@@ -38,6 +38,34 @@ var StartPage = fabric.util.createClass(Page, {
         obj.global.canvas.renderAll();
       };
     }(this));
+
+  },
+
+  formatAssets: function() {
+    this.global.assets.FFlogo.scale(2);
+    this.global.assets.FFlogo.set({
+      top: -75,
+      left: window.innerWidth*0.05
+    });
+    this.global.assets.FFlogo.set('selectable', false);
+
+    this.global.assets.startButton.scale(0.5);
+    this.global.assets.startButton.set({
+      top: 500,
+      left: window.innerWidth*0.45
+    });
+    this.global.assets.startButton.set('selectable', false);
+  },
+
+  addToCanvas: function() {
+    //this is a function that returns a callback function
+    //this is needed to get a reference to global inside the callback
+    function makeCanvasAdder(global) {
+      return function(e) { global.canvas.add(e); };
+    }
+
+    //map the callback over the assets
+    this.assets.forEach(makeCanvasAdder(this.global));
   },
 
 });

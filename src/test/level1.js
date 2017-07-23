@@ -4,12 +4,16 @@ function level1(global){
   canvas.setHeight(window.innerHeight);
   canvas.setWidth(window.innerWidth);
 
+  canvas.add(global.assets.FFlogo);
+  global.assets.FFlogo.set({selectable: false});
+  global.assets.FFlogo.scale(0.4); 
+/*
   fabric.Image.fromURL('Assets/logo.jpg', function(oImg) {
     oImg.scale(0.1);
     canvas.add(oImg);
     oImg.set('selectable',false);
   });
-
+*/
 
   var ebox = new fabric.Rect({ originX: 'center', originY: 'center', fill: 'black', width: 40, height: 40});
   ebox.set('fill', 'white');
@@ -186,17 +190,19 @@ function level1(global){
 
 
 
-  var verpart1 = new fabric.Circle({ radius: 10, fill: 'blue', top: (window.innerHeight/2), left: window.innerWidth/2-100});
-  verpart1.set({
+  var verpart1 = new fabric.Circle({ radius: 10, fill: 'blue', top: (window.innerHeight/2)-100, left: window.innerWidth/2-100});
+  verpart1.set({ lockMovementX: true, 
+                    lockMovementY: true,
                     hasBorders:false, 
                     hasControls:false }); 
 
   var verpart2 = new fabric.Circle({ radius: 10, fill: 'blue', top: (window.innerHeight/2), left: window.innerWidth/2-100});
-  verpart2.set({
+  verpart2.set({ lockMovementX: true, 
+                    lockMovementY: true,
                     hasBorders:false, 
                     hasControls:false }); 
 
-  var inpart1 = new fabric.Circle({ radius: 10, fill: '#f55', top: (window.innerHeight/2), left: window.innerWidth/2-100});
+  var inpart1 = new fabric.Circle({ radius: 10, fill: '#f55', top: (window.innerHeight/2)-100, left: window.innerWidth/2-100});
   inpart1.set({
                     hasBorders:false, 
                     hasControls:false }); 
@@ -206,8 +212,16 @@ function level1(global){
                     hasBorders:false, 
                     hasControls:false }); 
 
+    var outpart1 = new fabric.Circle({ radius: 10, fill: 'purple', top: (window.innerHeight/2)-100, left: window.innerWidth/2-100});
+  outpart1.set({
+                    hasBorders:false, 
+                    hasControls:false }); 
 
-   
+  var outpart2 = new fabric.Circle({ radius: 10, fill: 'purple', top: (window.innerHeight/2), left: window.innerWidth/2-100});
+  outpart2.set({
+                    hasBorders:false, 
+                    hasControls:false }); 
+
   var expanded = 0; 
   var nparticles = 0;  
 
@@ -274,6 +288,12 @@ function level1(global){
   else if(nparticles<2){
     canvas.add(inpart2);
      nparticles=nparticles+1;
+   } else if(nparticles<3){
+    canvas.add(outpart1);
+     nparticles=nparticles+1;
+   }   else if(nparticles<4){
+    canvas.add(outpart2);
+     nparticles=nparticles+1;
    }
    console.log(nparticles);
 
@@ -287,6 +307,12 @@ function level1(global){
    }
   else if(nparticles<2){
     canvas.add(inpart2);
+     nparticles=nparticles+1;
+   } else if(nparticles<3){
+    canvas.add(outpart1);
+     nparticles=nparticles+1;
+   }   else if(nparticles<4){
+    canvas.add(outpart2);
      nparticles=nparticles+1;
    }
    console.log(nparticles);
@@ -302,6 +328,12 @@ function level1(global){
   else if(nparticles<2){
     canvas.add(inpart2);
      nparticles=nparticles+1;
+   } else if(nparticles<3){
+    canvas.add(outpart1);
+     nparticles=nparticles+1;
+   }   else if(nparticles<4){
+    canvas.add(outpart2);
+     nparticles=nparticles+1;
    }
 
   });
@@ -314,6 +346,12 @@ function level1(global){
    }
   else if(nparticles<2){
     canvas.add(inpart2);
+     nparticles=nparticles+1;
+   }  else if(nparticles<3){
+    canvas.add(outpart1);
+     nparticles=nparticles+1;
+   }   else if(nparticles<4){
+    canvas.add(outpart2);
      nparticles=nparticles+1;
    }
 
@@ -339,6 +377,13 @@ function level1(global){
    } 
   });
 
+
+
+
+
+
+  //inpart1
+
   inpart1.on('mousedown', function(){
     canvas.add(verpart1);
   });
@@ -346,7 +391,7 @@ function level1(global){
 var line = new fabric.Line([50, 50, 100, 100], {
     fill: 'black',
     stroke: 'black',
-    strokeWidth: 2,
+    strokeWidth: 1,
     selectable: true,
     hasControls: false,
     hasBorders: false,
@@ -356,41 +401,135 @@ var line = new fabric.Line([50, 50, 100, 100], {
     //originY: 'center'
 });
 
-canvas.add(line);
+
 
   inpart1.on('moving', function(){
+    canvas.add(line);
     console.log('moving');
     console.log(inpart1.left);
             line.set({
                 x1: inpart1.getCenterPoint().x, y1: inpart1.getCenterPoint().y, 
                 x2: verpart1.getCenterPoint().x, y2: verpart1.getCenterPoint().y,
-                selectable: true
+                selectable: false
             });
     canvas.renderAll();
   });
 
 
+//inpart2
 
-
-  inpart1.on({
-    'mouse:down': function(e) {
-      if (e.target) {
-        e.target.opacity = 0.5;
-        canvas.renderAll();
-      }
-    },
-    'mouse:up': function(e) {
-      if (e.target) {
-        e.target.opacity = 1;
-        canvas.renderAll();
-      }
-    },
-    'object:moved': function(e) {
-      e.target.opacity = 0.5;
-    },
-    'object:modified': function(e) {
-      e.target.opacity = 1;
-    }
+  inpart2.on('mousedown', function(){
+    canvas.add(verpart2);
   });
+
+var line2 = new fabric.Line([50, 50, 100, 100], {
+    fill: 'black',
+    stroke: 'black',
+    strokeWidth: 1,
+    selectable: true,
+    hasControls: false,
+    hasBorders: false,
+    centeredRotation: false,
+    centeredScaling: false,
+    //originX: 'center',
+    //originY: 'center'
+});
+
+
+
+  inpart2.on('moving', function(){
+    canvas.add(line2);
+    console.log('moving');
+    console.log(inpart2.left);
+            line2.set({
+                x1: inpart2.getCenterPoint().x, y1: inpart2.getCenterPoint().y, 
+                x2: verpart2.getCenterPoint().x, y2: verpart2.getCenterPoint().y,
+                selectable: false
+            });
+    canvas.renderAll();
+  });
+
+var interactionline = new fabric.Line([50, 50, 100, 100], {
+    fill: 'blue',
+    stroke: 'blue',
+    strokeWidth: 1,
+    selectable: true,
+    hasControls: false,
+    hasBorders: false,
+    centeredRotation: false,
+    centeredScaling: false,
+    //originX: 'center',
+    //originY: 'center'
+});
+
+  gammagroup.on('mousedown', function(){
+    console.log('Delicious');
+              interactionline.set({
+                x1: verpart1.getCenterPoint().x, y1: verpart1.getCenterPoint().y, 
+                x2: verpart2.getCenterPoint().x, y2: verpart2.getCenterPoint().y,
+                selectable: false
+            });
+    canvas.add(interactionline);
+
+  });
+
+//outpart1
+
+var outline1 = new fabric.Line([50, 50, 100, 100], {
+    fill: 'black',
+    stroke: 'black',
+    strokeWidth: 1,
+    selectable: true,
+    hasControls: false,
+    hasBorders: false,
+    centeredRotation: false,
+    centeredScaling: false,
+    //originX: 'center',
+    //originY: 'center'
+});
+
+
+
+  outpart1.on('moving', function(){
+    canvas.add(outline1);
+    console.log('moving');
+    console.log(outpart1.left);
+            outline1.set({
+                x1: outpart1.getCenterPoint().x, y1: outpart1.getCenterPoint().y, 
+                x2: verpart1.getCenterPoint().x, y2: verpart1.getCenterPoint().y,
+                selectable: false
+            });
+    canvas.renderAll();
+  });
+
+  //outpart2
+
+var outline2 = new fabric.Line([50, 50, 100, 100], {
+    fill: 'black',
+    stroke: 'black',
+    strokeWidth: 1,
+    selectable: true,
+    hasControls: false,
+    hasBorders: false,
+    centeredRotation: false,
+    centeredScaling: false,
+    //originX: 'center',
+    //originY: 'center'
+});
+
+
+
+  outpart2.on('moving', function(){
+    canvas.add(outline2);
+    console.log('moving');
+    console.log(outpart2.left);
+            outline2.set({
+                x1: outpart2.getCenterPoint().x, y1: outpart2.getCenterPoint().y, 
+                x2: verpart2.getCenterPoint().x, y2: verpart2.getCenterPoint().y,
+                selectable: false
+            });
+    canvas.renderAll();
+  });
+
 
 }
