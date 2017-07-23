@@ -194,6 +194,10 @@ ebox.set({ lockMovementX: true,
   this.global.canvas.add(this.assets.fermiongroup); 
 
 
+
+
+
+
   this.assets.fermiongroup.expanded=false; 
   function animateE(page) { 
     return function() {
@@ -265,75 +269,189 @@ ebox.set({ lockMovementX: true,
                     hasControls:false });
 
 
-  this.assets.interactionbox = new fabric.Rect({ top: window.innerHeight-100, left:(window.innerWidth/2) , fill: 'black', width: 40, height: 40});
+
+  this.assets.squiggle = this.global.assets.squiggle; 
+  this.global.canvas.add(this.assets.squiggle); 
+  this.assets.squiggle.scale(0.11); 
+  this.assets.squiggle.set({
+    originX: 'center', 
+    originY: 'center', 
+    hasBorders: false, 
+    hasControls: false,
+  });
+
+
+  this.assets.interactionbox = new fabric.Rect({ originX: 'center', originY: 'center' , fill: 'black', width: 40, height: 40});
   this.assets.interactionbox.set('fill', 'white');
   this.assets.interactionbox.set({ strokeWidth: 3, stroke: 'black' });
-
   this.assets.interactionbox.set({ lockMovementX: true, 
                     lockMovementY: true,
                     hasBorders:false, 
                     hasControls:false });
 
-  this.global.canvas.add(this.assets.interactionbox);
-  this.assets.interactionbox.on('mousedown', animateI(this));
+  this.assets.interactiongroup = new fabric.Group([this.assets.interactionbox, this.assets.squiggle],{
+      top: window.innerHeight-100, left: (window.innerWidth/2),
+  });
+  this.assets.interactiongroup.set({
+    hasBorders: false, 
+    hasControls: false, 
+  });
+  this.global.canvas.add(this.assets.interactiongroup);
+  this.assets.interactiongroup.on('mousedown', animateI(this));
 
-  this.assets.interactionbox.expanded=false; 
+  this.assets.interactiongroup.expanded=false; 
   function animateI(page) { 
     return function() {
        console.log('selected interactionbox', page);
-       if(page.assets.interactionbox.expanded==false){
+       if(page.assets.interactiongroup.expanded==false){
        page.global.canvas.add(page.assets.gammagroup); 
        page.assets.gammagroup.animate('top', "-=50", {
         onChange: page.global.canvas.renderAll.bind(page.global.canvas),
       });
 
-       page.assets.interactionbox.expanded=true; 
+       page.assets.interactiongroup.expanded=true; 
      } else {
       page.assets.gammagroup.animate('top', "+=50", {
         onChange: page.global.canvas.renderAll.bind(page.global.canvas),
         onComplete: function() {page.global.canvas.remove(page.assets.gammagroup);},
          });
-        page.assets.interactionbox.expanded=false; 
+        page.assets.interactiongroup.expanded=false; 
 
      }
     };
   }  
 
-  this.assets.deletebox = new fabric.Rect({ top: window.innerHeight-100, left: (window.innerWidth/2)+50, fill: 'black', width: 40, height: 40});
+  this.assets.deletebox = new fabric.Rect({ 
+    originX: 'center', 
+    originY: 'center',
+     fill: 'black', width: 40, height: 40});
   this.assets.deletebox.set('fill', 'white');
   this.assets.deletebox.set({ strokeWidth: 3, stroke: 'black' });
-  this.global.canvas.add(this.assets.deletebox); 
+
   this.assets.deletebox.set({ lockMovementX: true, 
                     lockMovementY: true,
                     hasBorders:false, 
                     hasControls:false });
 
-  this.assets.homebox = new fabric.Rect({ top: (window.innerHeight/2)-100, left: window.innerWidth-50, fill: 'black', width: 40, height: 40});
+
+
+  this.assets.eraser = this.global.assets.eraser; 
+  this.assets.eraser.scale(0.11); 
+  this.assets.eraser.set({
+    originX: 'center', 
+    originY: 'center', 
+    hasBorders: false, 
+    hasControls: false,
+  });
+
+  this.assets.deletegroup = new fabric.Group([this.assets.deletebox, this.assets.eraser],{
+      top: window.innerHeight-100, left: (window.innerWidth/2)+50,
+  });
+  this.assets.deletegroup.set({
+    hasBorders: false, 
+    hasControls: false, 
+  });
+  this.global.canvas.add(this.assets.deletegroup);
+
+
+  this.assets.homebox = new fabric.Rect({ 
+    originX: 'center', 
+    originY: 'center',
+     fill: 'black', width: 40, height: 40});
   this.assets.homebox.set('fill', 'white');
   this.assets.homebox.set({ strokeWidth: 3, stroke: 'black' });
-  this.global.canvas.add(this.assets.homebox);
+
   this.assets.homebox.set({ lockMovementX: true, 
                     lockMovementY: true,
                     hasBorders:false, 
-                    hasControls:false }); 
+                    hasControls:false });
 
-  this.assets.helpbox = new fabric.Rect({ top: (window.innerHeight/2)-50, left: window.innerWidth-50, fill: 'black', width: 40, height: 40});
+
+
+  this.assets.home = this.global.assets.menu; 
+  this.assets.home.scale(0.1); 
+  this.assets.home.set({
+    originX: 'center', 
+    originY: 'center', 
+    hasBorders: false, 
+    hasControls: false,
+  });
+
+  this.assets.homegroup = new fabric.Group([this.assets.homebox, this.assets.home],{
+      top: (window.innerHeight/2)-100, left: window.innerWidth-50,
+  });
+  this.assets.homegroup.set({
+    hasBorders: false, 
+    hasControls: false, 
+  });
+  this.global.canvas.add(this.assets.homegroup);
+
+
+  this.assets.helpbox = new fabric.Rect({ 
+    originX: 'center', 
+    originY: 'center',
+     fill: 'black', width: 40, height: 40});
   this.assets.helpbox.set('fill', 'white');
   this.assets.helpbox.set({ strokeWidth: 3, stroke: 'black' });
-  this.global.canvas.add(this.assets.helpbox); 
+
   this.assets.helpbox.set({ lockMovementX: true, 
                     lockMovementY: true,
                     hasBorders:false, 
-                    hasControls:false }); 
+                    hasControls:false });
 
-  this.assets.smbox = new fabric.Rect({ top: (window.innerHeight/2), left: window.innerWidth-50, fill: 'black', width: 40, height: 40});
+
+
+  this.assets.help = this.global.assets.help; 
+  this.assets.help.scale(0.14); 
+  this.assets.help.set({
+    originX: 'center', 
+    originY: 'center', 
+    hasBorders: false, 
+    hasControls: false,
+  });
+
+  this.assets.helpgroup = new fabric.Group([this.assets.helpbox, this.assets.help],{
+      top: (window.innerHeight/2)-50, left: window.innerWidth-50,
+  });
+  this.assets.helpgroup.set({
+    hasBorders: false, 
+    hasControls: false, 
+  });
+  this.global.canvas.add(this.assets.helpgroup);
+
+
+  this.assets.smbox = new fabric.Rect({ 
+    originX: 'center', 
+    originY: 'center',
+     fill: 'black', width: 40, height: 40});
   this.assets.smbox.set('fill', 'white');
   this.assets.smbox.set({ strokeWidth: 3, stroke: 'black' });
-  this.global.canvas.add(this.assets.smbox); 
+
   this.assets.smbox.set({ lockMovementX: true, 
                     lockMovementY: true,
                     hasBorders:false, 
-                    hasControls:false }); 
+                    hasControls:false });
+
+
+
+  this.assets.sm = this.global.assets.sm; 
+  this.assets.sm.scale(0.14); 
+  this.assets.sm.set({
+    originX: 'center', 
+    originY: 'center', 
+    hasBorders: false, 
+    hasControls: false,
+  });
+
+  this.assets.smgroup = new fabric.Group([this.assets.smbox, this.assets.sm],{
+      top: (window.innerHeight/2), left: window.innerWidth-50,
+  });
+  this.assets.smgroup.set({
+    hasBorders: false, 
+    hasControls: false, 
+  });
+  this.global.canvas.add(this.assets.smgroup);  
+
 
   this.assets.puzzle = loadPuzzle(this.global); // Init puzzle structure, preloaded with lvl1
   this.assets.goClick = 0;
