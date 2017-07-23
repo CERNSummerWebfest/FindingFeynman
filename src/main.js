@@ -1,12 +1,19 @@
 function afterAssetsLoaded(global) {
-  console.log(global.assets);
-  var puzzle = loadPuzzle();
-  console.log(global.assets);
-  console.log(global.canvas);
-  puzzle.printState();
-  global.canvas.add(puzzle);
-  //level1(global);
-  global.canvas.renderAll();
+  console.log("Loaded assets: ", global.assets);
+
+  global.pages.startPage = new StartPage([global.assets.FFlogo, global.assets.startButton], {
+                              global: global,
+                              name: "startPage",
+                              });
+
+  global.pages.menuPage = new MenuPage([global.assets.eraser], {
+                              global : global,
+                              name: "menuPage",
+                              });
+
+  global.pages.startPage.enter();
+
+//  level1(global);
 }
 
 function loadAssets(global, function_to_run_after_assets_are_loaded) {
@@ -14,7 +21,17 @@ function loadAssets(global, function_to_run_after_assets_are_loaded) {
   //info on the assets that we're gonna load
   global.assets_to_load = [
     {url: "FindingFeynmanLogo.svg", name: "FFlogo"},
-    {url: "StartButton.svg", name: "startButton"}
+    {url: "StartButton.svg", name: "startButton"},
+    {url: "DoneButton.svg", name: "doneButton"},
+    {url: "DotIcon.svg", name: "dot"},
+    //{url: "EmmyNoether.svg", name: "noether"},
+    {url: "EraserIcon.svg", name: "eraser"},
+    {url: "HelpIcon.svg", name: "help"},
+    {url: "MenuIcon.svg", name: "menu"},
+    {url: "NextButton.svg", name: "nextButton"},
+    {url: "SMIcon.svg", name: "sm"},
+    {url: "SpeechBubble.svg", name: "speechBubble"},
+    {url: "SquiggleIcon.svg", name: "squiggle"},
     ];
 
   global.assets = {};
@@ -50,6 +67,8 @@ function main() {
   console.log("Entered main");
   var global = {};
   global.canvas = new fabric.Canvas('canvas');
+  global.canvas.setWidth(window.innerWidth);
+  global.canvas.setHeight(window.innerHeight);
   global.assets = {};
   global.pages = {};
 
