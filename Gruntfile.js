@@ -83,5 +83,6 @@ module.exports = function(grunt) {
 
   // the default task can be run just by typing "grunt" on the command line
   grunt.registerTask('default', ['jshint', 'svgmin', 'concat', 'uglify']);
+  grunt.registerTask('test', ['jshint']);
 
 };
